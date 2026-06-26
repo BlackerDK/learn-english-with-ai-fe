@@ -136,7 +136,7 @@ export default function Vocabulary() {
       if (selectedTag) url += `&tag=${encodeURIComponent(selectedTag)}`;
       if (selectedStatus) url += `&status=${encodeURIComponent(selectedStatus)}`;
 
-      const res = await fetch(url);
+      const res = await fetch((import.meta.env.VITE_API_URL || '') + url);
       if (res.ok) {
         const data = await res.json();
         setVocabularies(data.items || []);
