@@ -4,6 +4,7 @@ import {
   Upload, Check, X, CheckCircle, Clock, Save, FileText, UploadCloud,
   ArrowRight
 } from 'lucide-react';
+import * as XLSX from 'xlsx';
 import { globalShowApiError } from '../App';
 
 interface WritingTopic {
@@ -42,6 +43,7 @@ export default function Writing() {
   // Modal State for Topic
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form, setForm] = useState({ id: '', title: '', description: '', level: 'Intermediate' });
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     fetchTopics();
@@ -164,6 +166,101 @@ export default function Writing() {
     setIsModalOpen(true);
   };
 
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const processData = async (data: any[]) => {
+      try {
+        const topicsToAdd = [];
+        
+        let startIndex = 0;
+        if (data.length > 0 && data[0].length > 0 && 
+           (String(data[0][0]).toLowerCase().includes('chủ đề') || String(data[0][0]).toLowerCase().includes('topic'))) {
+          startIndex = 1;
+        }
+
+        for (let i = startIndex; i < data.length; i++) {
+          const row = data[i];
+          if (!row || row.length < 2) continue;
+          
+          topicsToAdd.push({
+            title: String(row[0] || 'Untitled').trim(),
+            description: String(row[1] || '').trim(),
+            level: String(row[2] || 'Intermediate').trim()
+          });
+        }
+
+        if (topicsToAdd.length === 0) {
+          globalShowApiError?.({ message: 'Không tìm thấy dữ liệu hợp lệ trong file' });
+          return;
+        }
+
+        const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/writing/batch', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          },
+          body: JSON.stringify(topicsToAdd)
+        });
+
+        if (res.ok) {
+          fetchTopics();
+          if (fileInputRef.current) fileInputRef.current.value = '';
+          alert(`Đã import thành công ${topicsToAdd.length} chủ đề!`);
+        } else {
+          globalShowApiError?.({ message: 'Lỗi khi import chủ đề' });
+        }
+      } catch (err) {
+        console.error(err);
+        globalShowApiError?.({ message: 'Lỗi xử lý file' });
+      }
+    };
+
+    if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const data = new Uint8Array(event.target?.result as ArrayBuffer);
+          const workbook = XLSX.read(data, { type: 'array' });
+          const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+          const jsonData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
+          processData(jsonData as any[]);
+        } catch (err) {
+          console.error(err);
+          globalShowApiError?.({ message: 'Không thể đọc file Excel' });
+        }
+      };
+      reader.readAsArrayBuffer(file);
+    } else {
+      const reader = new FileReader();
+      reader.onload = async (event) => {
+        try {
+          const text = event.target?.result as string;
+          const lines = text.split('\n');
+          const data = [];
+          for (const line of lines) {
+            const l = line.trim();
+            if (!l) continue;
+            let separator = ',';
+            if (l.includes('|')) separator = '|';
+            else if (l.includes('\t')) separator = '\t';
+
+            const row = l.split(new RegExp(`\\s*${separator}\\s*(?=(?:(?:[^"]*"){2})*[^"]*$)`));
+            const cleanRow = row.map(cell => cell.replace(/^"(.*)"$/, '$1').trim());
+            data.push(cleanRow);
+          }
+          processData(data);
+        } catch (err) {
+          console.error(err);
+          globalShowApiError?.({ message: 'Lỗi khi đọc file text/csv' });
+        }
+      };
+      reader.readAsText(file);
+    }
+  };
+
   const handleEvaluate = async () => {
     if (!selectedTopic || !userInput.trim()) return;
 
@@ -212,6 +309,20 @@ export default function Writing() {
               Luyện Viết
             </h2>
             <div className="flex gap-2">
+              <input
+                type="file"
+                accept=".csv,.txt,.tsv,.xlsx,.xls"
+                className="hidden"
+                ref={fileInputRef}
+                onChange={handleFileUpload}
+              />
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                className="p-2 rounded-xl bg-white hover:bg-gray-50 text-gray-600 hover:text-emerald-500 transition-colors"
+                title="Import Chủ Đề (Excel, CSV)"
+              >
+                <UploadCloud className="h-5 w-5" />
+              </button>
               <button
                 onClick={() => setShowHistory(true)}
                 className="p-2 rounded-xl bg-white hover:bg-gray-50 text-gray-600 hover:text-gray-900 transition-colors"
