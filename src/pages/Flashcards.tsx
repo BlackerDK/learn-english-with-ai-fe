@@ -200,8 +200,8 @@ export default function Flashcards() {
     return (
       <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
         <div>
-          <h1 className="text-3xl font-bold text-white mb-2">Flashcard Dashboard</h1>
-          <p className="text-gray-400">Chọn nhóm từ vựng bạn muốn ôn tập hôm nay dựa trên mức độ thành thạo.</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Flashcard Dashboard</h1>
+          <p className="text-gray-600">Chọn nhóm từ vựng bạn muốn ôn tập hôm nay dựa trên mức độ thành thạo.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -217,16 +217,16 @@ export default function Flashcards() {
                   <div className="p-2.5 rounded-xl bg-gray-500/20 text-gray-400">
                     <Circle className="h-5 w-5" />
                   </div>
-                  <h3 className="text-xl font-bold text-white">Chưa biết</h3>
+                  <h3 className="text-xl font-bold text-gray-900">Chưa biết</h3>
                 </div>
-                <p className="text-sm text-gray-400">Các từ vựng mới thêm vào hoặc bạn hoàn toàn chưa nhớ.</p>
+                <p className="text-sm text-gray-600">Các từ vựng mới thêm vào hoặc bạn hoàn toàn chưa nhớ.</p>
               </div>
               <div className="text-right">
-                <span className="text-4xl font-extrabold text-gray-400">{stats?.unknown || 0}</span>
+                <span className="text-4xl font-extrabold text-gray-600">{stats?.unknown || 0}</span>
                 <span className="block text-xs text-gray-500 font-semibold mt-1">TỪ VỰNG</span>
               </div>
             </div>
-            <div className="mt-6 flex items-center justify-between text-sm font-medium text-gray-400 group-hover:text-white transition-colors">
+            <div className="mt-6 flex items-center justify-between text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">
               <span>Bắt đầu ôn tập</span>
               <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
             </div>
@@ -244,9 +244,9 @@ export default function Flashcards() {
                   <div className="p-2.5 rounded-xl bg-rose-500/20 text-rose-400">
                     <Flame className="h-5 w-5" />
                   </div>
-                  <h3 className="text-xl font-bold text-white">Khó</h3>
+                  <h3 className="text-xl font-bold text-gray-900">Khó</h3>
                 </div>
-                <p className="text-sm text-gray-400">Những từ bạn hay quên hoặc cảm thấy khó nhớ.</p>
+                <p className="text-sm text-gray-600">Những từ bạn hay quên hoặc cảm thấy khó nhớ.</p>
               </div>
               <div className="text-right">
                 <span className="text-4xl font-extrabold text-rose-400">{stats?.hard || 0}</span>
@@ -271,9 +271,9 @@ export default function Flashcards() {
                   <div className="p-2.5 rounded-xl bg-indigo-500/20 text-indigo-400">
                     <BrainCircuit className="h-5 w-5" />
                   </div>
-                  <h3 className="text-xl font-bold text-white">Nhớ sơ sơ</h3>
+                  <h3 className="text-xl font-bold text-gray-900">Nhớ sơ sơ</h3>
                 </div>
-                <p className="text-sm text-gray-400">Những từ bạn đã biết nghĩa nhưng cần ôn lại cho chắc.</p>
+                <p className="text-sm text-gray-600">Những từ bạn đã biết nghĩa nhưng cần ôn lại cho chắc.</p>
               </div>
               <div className="text-right">
                 <span className="text-4xl font-extrabold text-indigo-400">{stats?.good || 0}</span>
@@ -298,9 +298,9 @@ export default function Flashcards() {
                   <div className="p-2.5 rounded-xl bg-emerald-500/20 text-emerald-400">
                     <CheckCircle2 className="h-5 w-5" />
                   </div>
-                  <h3 className="text-xl font-bold text-white">Dễ</h3>
+                  <h3 className="text-xl font-bold text-gray-900">Dễ</h3>
                 </div>
-                <p className="text-sm text-gray-400">Những từ bạn đã thuộc làu, chỉ cần lướt qua để không quên.</p>
+                <p className="text-sm text-gray-600">Những từ bạn đã thuộc làu, chỉ cần lướt qua để không quên.</p>
               </div>
               <div className="text-right">
                 <span className="text-4xl font-extrabold text-emerald-400">{stats?.easy || 0}</span>
@@ -340,14 +340,14 @@ export default function Flashcards() {
           <Layers className="h-10 w-10" />
         </div>
         <div className="space-y-2">
-          <h2 className="text-2xl font-bold text-white">Nhóm từ trống!</h2>
-          <p className="text-gray-400 text-sm leading-relaxed">
+          <h2 className="text-2xl font-bold text-gray-900">Nhóm từ trống!</h2>
+          <p className="text-gray-600 text-sm leading-relaxed">
             Tuyệt vời! Không có từ vựng nào trong nhóm <strong>{statusLabel[reviewingStatus || '']}</strong> để ôn tập lúc này.
           </p>
         </div>
         <button
           onClick={() => { setReviewingStatus(null); fetchStats(); }}
-          className="flex items-center justify-center gap-2 mx-auto bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium py-2 px-5 rounded-xl text-sm transition-all duration-300 cursor-pointer"
+          className="flex items-center justify-center gap-2 mx-auto bg-white hover:bg-gray-50 border border-gray-200 text-gray-900 font-medium py-2 px-5 rounded-xl text-sm transition-all duration-300 cursor-pointer"
         >
           <ArrowRight className="h-4 w-4 rotate-180" />
           Quay lại Dashboard
@@ -364,8 +364,8 @@ export default function Flashcards() {
           <Award className="h-10 w-10 animate-bounce" />
         </div>
         <div className="space-y-2">
-          <h2 className="text-2xl font-bold text-white">Hoàn thành lượt ôn!</h2>
-          <p className="text-gray-400 text-sm leading-relaxed">
+          <h2 className="text-2xl font-bold text-gray-900">Hoàn thành lượt ôn!</h2>
+          <p className="text-gray-600 text-sm leading-relaxed">
             Bạn đã xuất sắc ôn tập xong <span className="text-emerald-400 font-bold">{cards.length} từ vựng</span>. Streak của bạn đã được cập nhật!
           </p>
         </div>
@@ -395,10 +395,10 @@ export default function Flashcards() {
     <div className="max-w-2xl mx-auto space-y-6 animate-fade-in">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <button 
               onClick={() => { setReviewingStatus(null); fetchStats(); }}
-              className="p-1.5 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white cursor-pointer"
+              className="p-1.5 hover:bg-gray-50 rounded-lg transition-colors text-gray-600 hover:text-gray-900 cursor-pointer"
             >
               <ArrowRight className="h-5 w-5 rotate-180" />
             </button>
@@ -406,15 +406,15 @@ export default function Flashcards() {
           </h1>
         </div>
         <div className="text-right">
-          <span className="text-xs font-semibold text-gray-400">Tiến trình</span>
-          <p className="text-sm font-bold text-white">
+          <span className="text-xs font-semibold text-gray-600">Tiến trình</span>
+          <p className="text-sm font-bold text-gray-900">
             {currentIndex + 1} / {cards.length}
           </p>
         </div>
       </div>
 
       {/* Progress Bar */}
-      <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+      <div className="h-1.5 w-full bg-white rounded-full overflow-hidden">
         <div
           className="h-full bg-indigo-500 transition-all duration-300"
           style={{ width: `${((currentIndex + 1) / cards.length) * 100}%` }}
@@ -431,7 +431,7 @@ export default function Flashcards() {
           {/* Front Side */}
           <div
             onClick={() => setIsFlipped(true)}
-            className="absolute inset-0 backface-hidden glass-card flashcard-face p-8 rounded-3xl flex flex-col justify-between items-center text-center cursor-pointer border border-white/10 hover:border-indigo-500/30 transition-colors"
+            className="absolute inset-0 backface-hidden glass-card flashcard-face p-8 rounded-3xl flex flex-col justify-between items-center text-center cursor-pointer border border-gray-200 hover:border-indigo-500/30 transition-colors"
           >
             <div className="flex items-center justify-between w-full">
               <span className="text-[10px] uppercase tracking-wider font-semibold text-gray-500">Mặt trước (Nhìn từ)</span>
@@ -440,14 +440,14 @@ export default function Flashcards() {
                   e.stopPropagation(); // Avoid flipping when clicking speak
                   handleSpeak(currentCard.word);
                 }}
-                className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-indigo-400 hover:text-indigo-300 transition-colors cursor-pointer"
+                className="p-2 rounded-xl bg-white hover:bg-gray-50 text-indigo-400 hover:text-indigo-300 transition-colors cursor-pointer"
                 title="Nghe phát âm chuẩn"
               >
                 <Volume2 className="h-4.5 w-4.5" />
               </button>
             </div>
             <div className="space-y-3">
-              <h2 className="text-4xl font-extrabold text-white font-mono">{currentCard.word}</h2>
+              <h2 className="text-4xl font-extrabold text-gray-900 font-mono">{currentCard.word}</h2>
               {currentCard.pronunciation && (
                 <span className="text-sm text-indigo-400 font-mono block">{currentCard.pronunciation}</span>
               )}
@@ -467,7 +467,7 @@ export default function Flashcards() {
                     e.stopPropagation(); // Avoid flipping when clicking speak
                     handleSpeak(currentCard.word);
                   }}
-                  className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-indigo-400 hover:text-indigo-300 transition-colors cursor-pointer"
+                  className="p-2 rounded-xl bg-white hover:bg-gray-50 text-indigo-400 hover:text-indigo-300 transition-colors cursor-pointer"
                   title="Nghe phát âm chuẩn"
                 >
                   <Volume2 className="h-4.5 w-4.5" />
@@ -475,11 +475,11 @@ export default function Flashcards() {
               </div>
 
               <div className="space-y-3">
-                <p className="text-xl font-bold text-white leading-relaxed">{currentCard.meaning}</p>
+                <p className="text-xl font-bold text-gray-900 leading-relaxed">{currentCard.meaning}</p>
                 
                 {currentCard.example && (
-                  <div className="p-3 bg-white/5 rounded-xl border border-white/5 text-xs text-gray-300 italic">
-                    <span className="font-semibold block text-white not-italic mb-1">Ví dụ minh họa</span>
+                  <div className="p-3 bg-white rounded-xl border border-gray-200 text-xs text-gray-700 italic">
+                    <span className="font-semibold block text-gray-900 not-italic mb-1">Ví dụ minh họa</span>
                     "{currentCard.example}"
                     {currentCard.exampleTranslation && (
                       <span className="block text-gray-500 mt-1 font-normal not-italic">{currentCard.exampleTranslation}</span>
@@ -497,7 +497,7 @@ export default function Flashcards() {
             </div>
             <button
               onClick={() => setIsFlipped(false)}
-              className="flex items-center justify-center gap-1.5 text-xs text-gray-500 hover:text-gray-300 transition-colors mt-3 pt-3 border-t border-white/5 w-full cursor-pointer"
+              className="flex items-center justify-center gap-1.5 text-xs text-gray-500 hover:text-gray-700 transition-colors mt-3 pt-3 border-t border-gray-200 w-full cursor-pointer"
             >
               <RotateCw className="h-3.5 w-3.5" /> Click hoặc nhấn Phím Cách để lật lại
             </button>
@@ -514,7 +514,7 @@ export default function Flashcards() {
               className="bg-gray-600 hover:bg-gray-500 text-white font-medium py-3 rounded-2xl text-sm transition-all duration-300 shadow-lg shadow-gray-600/10 cursor-pointer flex flex-col items-center border border-gray-500"
             >
               <span>Chưa biết</span>
-              <span className="text-[10px] text-gray-300 font-normal mt-0.5">Phím 1</span>
+              <span className="text-[10px] text-gray-700 font-normal mt-0.5">Phím 1</span>
             </button>
             <button
               onClick={() => handleReview('hard')}
@@ -541,10 +541,10 @@ export default function Flashcards() {
         ) : (
           <button
             onClick={() => setIsFlipped(true)}
-            className="w-full bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold py-3.5 rounded-2xl text-sm transition-all duration-300 cursor-pointer flex items-center justify-center gap-2"
+            className="w-full bg-white hover:bg-gray-50 border border-gray-200 text-gray-900 font-semibold py-3.5 rounded-2xl text-sm transition-all duration-300 cursor-pointer flex items-center justify-center gap-2"
           >
             <span>Hiện câu trả lời</span>
-            <span className="text-[10px] bg-white/10 text-gray-300 px-2 py-0.5 rounded">Space</span>
+            <span className="text-[10px] bg-gray-50 text-gray-700 px-2 py-0.5 rounded">Space</span>
           </button>
         )}
 

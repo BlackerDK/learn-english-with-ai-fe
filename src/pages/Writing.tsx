@@ -207,14 +207,14 @@ export default function Writing() {
         {/* Header & Actions */}
         <div className="glass-card p-5 rounded-2xl flex flex-col gap-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-white flex items-center gap-2">
+            <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
               <FileText className="h-6 w-6 text-pink-400" />
               Luyện Viết
             </h2>
             <div className="flex gap-2">
               <button
                 onClick={() => setShowHistory(true)}
-                className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
+                className="p-2 rounded-xl bg-white hover:bg-gray-50 text-gray-600 hover:text-gray-900 transition-colors"
                 title="Lịch sử viết"
               >
                 <Clock className="h-5 w-5" />
@@ -233,13 +233,13 @@ export default function Writing() {
           </div>
 
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-600" />
             <input
               type="text"
               placeholder="Tìm chủ đề..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-white/5 border border-white/10 rounded-xl py-2 pl-9 pr-4 text-sm text-gray-200 focus:outline-none focus:border-pink-500/50"
+              className="w-full bg-white border border-gray-200 rounded-xl py-2 pl-9 pr-4 text-sm text-gray-800 focus:outline-none focus:border-pink-500/50"
             />
           </div>
 
@@ -250,7 +250,7 @@ export default function Writing() {
                 onClick={() => setSelectedLevel(lvl)}
                 className={`whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${selectedLevel === lvl
                   ? 'bg-pink-500/20 text-pink-400 border border-pink-500/30'
-                  : 'bg-white/5 text-gray-400 hover:text-gray-200 border border-transparent'
+                  : 'bg-white text-gray-600 hover:text-gray-800 border border-transparent'
                   }`}
               >
                 {lvl === '' ? 'Tất cả' : lvl}
@@ -267,29 +267,29 @@ export default function Writing() {
               onClick={() => setSelectedTopic(topic)}
               className={`group p-4 rounded-xl cursor-pointer border transition-all duration-200 ${selectedTopic?.id === topic.id
                 ? 'bg-pink-500/10 border-pink-500/30 shadow-lg shadow-pink-500/5'
-                : 'bg-white/5 border-transparent hover:bg-white/10 hover:border-white/10'
+                : 'bg-white border-transparent hover:bg-gray-50 hover:border-gray-200'
                 }`}
             >
               <div className="flex justify-between items-start mb-2">
-                <h3 className={`font-semibold text-sm ${selectedTopic?.id === topic.id ? 'text-pink-400' : 'text-gray-200'}`}>
+                <h3 className={`font-semibold text-sm ${selectedTopic?.id === topic.id ? 'text-pink-400' : 'text-gray-800'}`}>
                   {topic.title}
                 </h3>
-                <span className="text-[10px] px-2 py-0.5 rounded bg-white/10 text-gray-300">
+                <span className="text-[10px] px-2 py-0.5 rounded bg-gray-50 text-gray-700">
                   {topic.level}
                 </span>
               </div>
               <p className="text-xs text-gray-500 line-clamp-2">{topic.description}</p>
 
-              <div className="mt-3 flex justify-end gap-2 border-t border-white/5 pt-3">
+              <div className="mt-3 flex justify-end gap-2 border-t border-gray-200 pt-3">
                 <button
                   onClick={(e) => { e.stopPropagation(); openEditModal(topic); }}
-                  className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 hover:text-indigo-400 transition-colors flex items-center gap-1 text-xs"
+                  className="p-1.5 rounded-lg bg-white hover:bg-gray-50 text-gray-600 hover:text-indigo-400 transition-colors flex items-center gap-1 text-xs"
                 >
                   <Edit2 className="h-3.5 w-3.5" /> Sửa
                 </button>
                 <button
                   onClick={(e) => { e.stopPropagation(); handleDelete(topic.id); }}
-                  className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 hover:text-rose-400 transition-colors flex items-center gap-1 text-xs"
+                  className="p-1.5 rounded-lg bg-white hover:bg-gray-50 text-gray-600 hover:text-rose-400 transition-colors flex items-center gap-1 text-xs"
                 >
                   <Trash2 className="h-3.5 w-3.5" /> Xóa
                 </button>
@@ -311,12 +311,12 @@ export default function Writing() {
             {/* Topic Details */}
             <div className="glass-card p-6 rounded-2xl flex-shrink-0">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-2xl font-bold text-white">{selectedTopic.title}</h2>
+                <h2 className="text-2xl font-bold text-gray-900">{selectedTopic.title}</h2>
                 <span className="px-3 py-1 rounded-full bg-pink-500/10 text-pink-400 text-xs font-semibold border border-pink-500/20">
                   Mục tiêu: {selectedTopic.level}
                 </span>
               </div>
-              <p className="text-gray-300 text-sm leading-relaxed bg-black/20 p-4 rounded-xl border border-white/5">
+              <p className="text-gray-700 text-sm leading-relaxed bg-black/20 p-4 rounded-xl border border-gray-200">
                 {selectedTopic.description}
               </p>
             </div>
@@ -324,7 +324,7 @@ export default function Writing() {
             {/* Writing Area */}
             <div className="glass-card p-6 rounded-2xl flex-1 flex flex-col min-h-0 relative">
               <div className="flex items-center justify-between mb-4">
-                <label className="text-sm font-semibold text-gray-300 flex items-center gap-2">
+                <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
                   <Edit2 className="h-4 w-4 text-pink-400" />
                   Bài viết của bạn:
                 </label>
@@ -336,7 +336,7 @@ export default function Writing() {
               <textarea
                 value={userInput}
                 onChange={(e) => setUserInput(e.target.value)}
-                className="flex-1 w-full bg-white/5 border border-white/10 rounded-xl p-4 text-sm focus:outline-none focus:border-pink-500/50 transition-colors resize-none text-gray-200 leading-relaxed font-sans shadow-inner placeholder:text-gray-600 mb-4"
+                className="flex-1 w-full bg-white border border-gray-200 rounded-xl p-4 text-sm focus:outline-none focus:border-pink-500/50 transition-colors resize-none text-gray-800 leading-relaxed font-sans shadow-inner placeholder:text-gray-600 mb-4"
                 placeholder="Bắt đầu viết tại đây..."
                 disabled={isEvaluating}
               />
@@ -378,11 +378,11 @@ export default function Writing() {
                         strokeLinecap="round"
                       />
                     </svg>
-                    <span className="text-xl font-bold text-white absolute">{evaluationResult.score}</span>
+                    <span className="text-xl font-bold text-gray-900 absolute">{evaluationResult.score}</span>
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white">Nhận xét từ AI</h3>
-                    <p className="text-sm text-gray-300 mt-1">{evaluationResult.generalFeedback}</p>
+                    <h3 className="text-lg font-bold text-gray-900">Nhận xét từ AI</h3>
+                    <p className="text-sm text-gray-700 mt-1">{evaluationResult.generalFeedback}</p>
                   </div>
                 </div>
 
@@ -399,7 +399,7 @@ export default function Writing() {
                             <span className="line-through text-rose-400">{mistake.mistake}</span>
                             <span className="text-emerald-400 font-medium">→ {mistake.correction}</span>
                           </div>
-                          <p className="text-xs text-gray-400 bg-black/20 p-2 rounded-lg">{mistake.explanation}</p>
+                          <p className="text-xs text-gray-600 bg-black/20 p-2 rounded-lg">{mistake.explanation}</p>
                         </div>
                       ))}
                     </div>
@@ -416,7 +416,7 @@ export default function Writing() {
                       {evaluationResult.vocabularySuggestions.map((vocab: any, idx: number) => (
                         <div key={idx} className="bg-cyan-500/5 border border-cyan-500/10 p-3 rounded-xl text-sm">
                           <div className="flex items-center gap-2 mb-1">
-                            <span className="text-gray-400">{vocab.original}</span>
+                            <span className="text-gray-600">{vocab.original}</span>
                             <ArrowRight className="h-3 w-3 text-gray-600" />
                             <span className="text-cyan-400 font-bold">{vocab.suggestion}</span>
                           </div>
@@ -430,11 +430,11 @@ export default function Writing() {
             )}
           </>
         ) : (
-          <div className="glass-card flex-1 rounded-2xl flex flex-col items-center justify-center p-8 text-center text-gray-400">
-            <div className="p-6 bg-white/5 rounded-full mb-4">
+          <div className="glass-card flex-1 rounded-2xl flex flex-col items-center justify-center p-8 text-center text-gray-600">
+            <div className="p-6 bg-white rounded-full mb-4">
               <FileText className="h-12 w-12 text-pink-400/50" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">Luyện Viết AI</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Luyện Viết AI</h3>
             <p className="max-w-md text-sm leading-relaxed">
               Chọn một chủ đề bên trái để bắt đầu luyện viết. AI sẽ đánh giá bài viết của bạn theo tiêu chuẩn cấp độ đã chọn, chỉ ra lỗi ngữ pháp và gợi ý từ vựng nâng cao.
             </p>
@@ -445,46 +445,46 @@ export default function Writing() {
       {/* Add/Edit Topic Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in">
-          <div className="glass-card w-full max-w-lg rounded-3xl p-6 md:p-8 shadow-2xl relative border border-white/10">
+          <div className="glass-card w-full max-w-lg rounded-3xl p-6 md:p-8 shadow-2xl relative border border-gray-200">
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-6 right-6 p-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
+              className="absolute top-6 right-6 p-2 rounded-xl bg-white hover:bg-gray-50 text-gray-600 hover:text-gray-900 transition-colors"
             >
               <X className="h-5 w-5" />
             </button>
 
-            <h3 className="text-2xl font-bold text-white mb-6">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">
               {form.id ? 'Sửa Chủ Đề' : 'Thêm Chủ Đề Mới'}
             </h3>
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-400 mb-1.5">Tên chủ đề</label>
+                <label className="block text-sm font-medium text-gray-600 mb-1.5">Tên chủ đề</label>
                 <input
                   type="text"
                   value={form.title}
                   onChange={e => setForm({ ...form, title: e.target.value })}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500/50 text-white placeholder:text-gray-600"
+                  className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500/50 text-gray-900 placeholder:text-gray-600"
                   placeholder="Vd: The impact of climate change"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-400 mb-1.5">Mô tả / Yêu cầu đề bài</label>
+                <label className="block text-sm font-medium text-gray-600 mb-1.5">Mô tả / Yêu cầu đề bài</label>
                 <textarea
                   value={form.description}
                   onChange={e => setForm({ ...form, description: e.target.value })}
-                  className="w-full h-32 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500/50 text-white placeholder:text-gray-600 resize-none"
+                  className="w-full h-32 bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500/50 text-gray-900 placeholder:text-gray-600 resize-none"
                   placeholder="Chi tiết đề bài..."
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-400 mb-1.5">Cấp độ</label>
+                <label className="block text-sm font-medium text-gray-600 mb-1.5">Cấp độ</label>
                 <select
                   value={form.level}
                   onChange={e => setForm({ ...form, level: e.target.value })}
-                  className="w-full bg-[#1a1a24] border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500/50 text-white"
+                  className="w-full bg-[#1a1a24] border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500/50 text-gray-900"
                 >
                   <option value="Beginner">Beginner (A1-A2)</option>
                   <option value="Intermediate">Intermediate (B1-B2)</option>
@@ -495,7 +495,7 @@ export default function Writing() {
               <div className="pt-4 flex gap-3">
                 <button
                   onClick={() => setIsModalOpen(false)}
-                  className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white font-medium text-sm transition-colors border border-white/5"
+                  className="flex-1 py-2.5 rounded-xl bg-white hover:bg-gray-50 text-gray-900 font-medium text-sm transition-colors border border-gray-200"
                 >
                   Hủy
                 </button>
@@ -515,15 +515,15 @@ export default function Writing() {
       {/* History Modal */}
       {showHistory && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in">
-          <div className="glass-card w-full max-w-4xl max-h-[90vh] rounded-3xl p-6 md:p-8 shadow-2xl relative border border-white/10 flex flex-col">
+          <div className="glass-card w-full max-w-4xl max-h-[90vh] rounded-3xl p-6 md:p-8 shadow-2xl relative border border-gray-200 flex flex-col">
             <button
               onClick={() => setShowHistory(false)}
-              className="absolute top-6 right-6 p-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
+              className="absolute top-6 right-6 p-2 rounded-xl bg-white hover:bg-gray-50 text-gray-600 hover:text-gray-900 transition-colors"
             >
               <X className="h-5 w-5" />
             </button>
 
-            <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
               <Clock className="h-6 w-6 text-pink-400" />
               Lịch sử bài viết
             </h3>
@@ -535,10 +535,10 @@ export default function Writing() {
                 </div>
               ) : (
                 histories.map(h => (
-                  <div key={h.id} className="bg-white/5 border border-white/10 rounded-2xl p-5">
+                  <div key={h.id} className="bg-white border border-gray-200 rounded-2xl p-5">
                     <div className="flex justify-between items-start mb-3">
                       <div>
-                        <h4 className="text-white font-bold">{h.topicTitle}</h4>
+                        <h4 className="text-gray-900 font-bold">{h.topicTitle}</h4>
                         <span className="text-xs text-gray-500">
                           {new Date(h.submittedAt).toLocaleString()} • {h.targetLevel}
                         </span>
@@ -547,7 +547,7 @@ export default function Writing() {
                         Điểm: {h.score}
                       </div>
                     </div>
-                    <div className="bg-black/30 p-3 rounded-xl text-sm text-gray-300 line-clamp-3 mb-3">
+                    <div className="bg-black/30 p-3 rounded-xl text-sm text-gray-700 line-clamp-3 mb-3">
                       {h.submittedText}
                     </div>
                     <button
@@ -570,18 +570,18 @@ export default function Writing() {
       {/* Custom Delete Confirmation Modal */}
       {topicToDelete && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in">
-          <div className="glass-card w-full max-w-sm rounded-3xl p-6 shadow-2xl border border-white/10 text-center">
+          <div className="glass-card w-full max-w-sm rounded-3xl p-6 shadow-2xl border border-gray-200 text-center">
             <div className="w-16 h-16 rounded-full bg-rose-500/10 flex items-center justify-center mx-auto mb-4">
               <Trash2 className="h-8 w-8 text-rose-500" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">Xóa Chủ Đề</h3>
-            <p className="text-sm text-gray-400 mb-6">
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Xóa Chủ Đề</h3>
+            <p className="text-sm text-gray-600 mb-6">
               Bạn có chắc chắn muốn xóa chủ đề này? Tất cả lịch sử bài làm liên quan cũng sẽ bị xóa vĩnh viễn.
             </p>
             <div className="flex gap-3">
               <button
                 onClick={() => setTopicToDelete(null)}
-                className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white font-medium text-sm transition-colors"
+                className="flex-1 py-2.5 rounded-xl bg-white hover:bg-gray-50 text-gray-900 font-medium text-sm transition-colors"
               >
                 Hủy
               </button>

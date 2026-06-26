@@ -397,7 +397,7 @@ export default function Vocabulary() {
           <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
             Sổ tay Từ vựng
           </h1>
-          <p className="text-gray-400 mt-1">Lưu trữ, tra cứu và quản lý các từ vựng ngôn ngữ của bạn.</p>
+          <p className="text-gray-600 mt-1">Lưu trữ, tra cứu và quản lý các từ vựng ngôn ngữ của bạn.</p>
         </div>
         <div className="flex gap-2 self-start sm:self-auto">
           <button
@@ -433,12 +433,12 @@ export default function Vocabulary() {
             placeholder="Tìm kiếm từ hoặc nghĩa..."
             value={search}
             onChange={(e) => { setSearch(e.target.value); setCurrentPage(1); }}
-            className="w-full bg-white/5 border border-white/5 rounded-xl pl-9 pr-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500/50 transition-colors"
+            className="w-full bg-white border border-gray-200 rounded-xl pl-9 pr-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500/50 transition-colors"
           />
         </div>
 
         <div className="flex flex-wrap gap-3">
-          <div className="flex items-center gap-1 bg-white/5 border border-white/5 rounded-xl px-3 py-1.5 text-xs text-gray-400">
+          <div className="flex items-center gap-1 bg-white border border-gray-200 rounded-xl px-3 py-1.5 text-xs text-gray-600">
             <Filter className="h-3.5 w-3.5" />
             Lọc:
           </div>
@@ -446,7 +446,7 @@ export default function Vocabulary() {
           <select
             value={selectedStatus}
             onChange={(e) => { setSelectedStatus(e.target.value); setCurrentPage(1); }}
-            className="bg-white/5 border border-white/5 rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-indigo-500/50 text-gray-300"
+            className="bg-white border border-gray-200 rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-indigo-500/50 text-gray-700"
           >
             <option value="" className="bg-bg-dark">Tất cả trạng thái</option>
             <option value="New" className="bg-bg-dark">Mới (New)</option>
@@ -457,7 +457,7 @@ export default function Vocabulary() {
           <select
             value={selectedTag}
             onChange={(e) => { setSelectedTag(e.target.value); setCurrentPage(1); }}
-            className="bg-white/5 border border-white/5 rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-indigo-500/50 text-gray-300 max-w-[150px]"
+            className="bg-white border border-gray-200 rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-indigo-500/50 text-gray-700 max-w-[150px]"
           >
             <option value="" className="bg-bg-dark">Tất cả Tag</option>
             {tags.map((t) => (
@@ -476,10 +476,10 @@ export default function Vocabulary() {
         </div>
       ) : vocabularies.length === 0 ? (
         <div className="glass-card p-12 text-center rounded-3xl space-y-3">
-          <div className="p-4 bg-white/5 border border-white/5 rounded-full inline-block text-gray-500">
+          <div className="p-4 bg-white border border-gray-200 rounded-full inline-block text-gray-500">
             <BookOpen className="h-8 w-8" />
           </div>
-          <p className="text-gray-400 text-sm">Không tìm thấy từ vựng nào.</p>
+          <p className="text-gray-600 text-sm">Không tìm thấy từ vựng nào.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -489,10 +489,10 @@ export default function Vocabulary() {
                 <div className="flex items-start justify-between">
                   <div className="space-y-0.5">
                     <div className="flex items-center gap-2">
-                      <h3 className="text-xl font-bold text-white font-mono">{item.word}</h3>
+                      <h3 className="text-xl font-bold text-gray-900 font-mono">{item.word}</h3>
                       <button
                         onClick={() => handleSpeak(item.word)}
-                        className="p-1 rounded bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors cursor-pointer"
+                        className="p-1 rounded bg-white hover:bg-gray-50 text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
                         title="Nghe phát âm chuẩn"
                       >
                         <Volume2 className="h-4 w-4" />
@@ -500,7 +500,7 @@ export default function Vocabulary() {
                       <button
                         onClick={() => handleAutofill(item.id)}
                         disabled={autofillingIds[item.id]}
-                        className={`p-1 rounded bg-white/5 hover:bg-white/10 transition-all cursor-pointer relative ${
+                        className={`p-1 rounded bg-white hover:bg-gray-50 transition-all cursor-pointer relative ${
                           autofillingIds[item.id] ? 'text-teal-400' : 'text-teal-400 hover:text-teal-300'
                         }`}
                         title="AI cập nhật chi tiết"
@@ -535,13 +535,13 @@ export default function Vocabulary() {
                   </span>
                 </div>
 
-                <p className="text-sm text-gray-200 font-medium leading-relaxed">{item.meaning}</p>
+                <p className="text-sm text-gray-800 font-medium leading-relaxed">{item.meaning}</p>
 
                 {(item.example || item.notes) && (
-                  <div className="border-t border-white/5 pt-2.5 mt-2.5 space-y-1.5">
+                  <div className="border-t border-gray-200 pt-2.5 mt-2.5 space-y-1.5">
                     {item.example && (
-                      <div className="text-xs text-gray-400 italic leading-relaxed">
-                        <span className="font-semibold not-italic text-white">Ví dụ: </span>
+                      <div className="text-xs text-gray-600 italic leading-relaxed">
+                        <span className="font-semibold not-italic text-gray-900">Ví dụ: </span>
                         {item.example}
                         {item.exampleTranslation && (
                           <span className="block text-gray-500 mt-0.5 font-normal not-italic">{item.exampleTranslation}</span>
@@ -558,10 +558,10 @@ export default function Vocabulary() {
                 )}
               </div>
 
-              <div className="flex items-center justify-between border-t border-white/5 pt-3 mt-3">
+              <div className="flex items-center justify-between border-t border-gray-200 pt-3 mt-3">
                 <div className="flex flex-wrap gap-1">
                   {item.tags.split(',').filter(Boolean).map((t, idx) => (
-                    <span key={idx} className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-white/5 border border-white/5 text-[9px] text-gray-400">
+                    <span key={idx} className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-white border border-gray-200 text-[9px] text-gray-600">
                       <Tag className="h-2 w-2" />
                       {t.trim()}
                     </span>
@@ -571,7 +571,7 @@ export default function Vocabulary() {
                 <div className="flex items-center gap-1">
                   <button
                     onClick={() => handleOpenEditModal(item)}
-                    className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors cursor-pointer"
+                    className="p-1.5 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-white transition-colors cursor-pointer"
                     title="Chỉnh sửa"
                   >
                     <Edit className="h-4 w-4" />
@@ -596,20 +596,20 @@ export default function Vocabulary() {
 
       {/* Pagination UI */}
       {vocabularies.length > 0 && totalPages > 1 && (
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-white/5">
-          <span className="text-xs text-gray-400">
-            Hiển thị từ thứ <span className="font-semibold text-white">{(currentPage - 1) * pageSize + 1}</span> đến{' '}
-            <span className="font-semibold text-white">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-gray-200">
+          <span className="text-xs text-gray-600">
+            Hiển thị từ thứ <span className="font-semibold text-gray-900">{(currentPage - 1) * pageSize + 1}</span> đến{' '}
+            <span className="font-semibold text-gray-900">
               {Math.min(currentPage * pageSize, totalItems)}
             </span>{' '}
-            trong tổng số <span className="font-semibold text-white">{totalItems}</span> từ vựng
+            trong tổng số <span className="font-semibold text-gray-900">{totalItems}</span> từ vựng
           </span>
 
           <div className="flex items-center gap-1.5 flex-wrap justify-center">
             <button
               onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
-              className="p-2 rounded-xl bg-white/5 border border-white/5 text-gray-400 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-40 disabled:hover:bg-white/5 disabled:hover:text-gray-400 cursor-pointer disabled:cursor-not-allowed"
+              className="p-2 rounded-xl bg-white border border-gray-200 text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors disabled:opacity-40 disabled:hover:bg-white disabled:hover:text-gray-600 cursor-pointer disabled:cursor-not-allowed"
               title="Trang trước"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -634,7 +634,7 @@ export default function Vocabulary() {
                     className={`h-9 w-9 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${
                       currentPage === 1
                         ? 'bg-gradient-to-r from-indigo-500 to-violet-600 border-indigo-500 text-white shadow-md'
-                        : 'bg-white/5 border-white/5 text-gray-400 hover:text-white hover:bg-white/10'
+                        : 'bg-white border-gray-200 text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                     }`}
                   >
                     1
@@ -657,7 +657,7 @@ export default function Vocabulary() {
                     className={`h-9 w-9 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${
                       currentPage === i
                         ? 'bg-gradient-to-r from-indigo-500 to-violet-600 border-indigo-500/30 text-white shadow-md'
-                        : 'bg-white/5 border-white/5 text-gray-400 hover:text-white hover:bg-white/10'
+                        : 'bg-white border-gray-200 text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                     }`}
                   >
                     {i}
@@ -680,7 +680,7 @@ export default function Vocabulary() {
                     className={`h-9 w-9 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${
                       currentPage === totalPages
                         ? 'bg-gradient-to-r from-indigo-500 to-violet-600 border-indigo-500 text-white shadow-md'
-                        : 'bg-white/5 border-white/5 text-gray-400 hover:text-white hover:bg-white/10'
+                        : 'bg-white border-gray-200 text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                     }`}
                   >
                     {totalPages}
@@ -694,7 +694,7 @@ export default function Vocabulary() {
             <button
               onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages}
-              className="p-2 rounded-xl bg-white/5 border border-white/5 text-gray-400 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-40 disabled:hover:bg-white/5 disabled:hover:text-gray-400 cursor-pointer disabled:cursor-not-allowed"
+              className="p-2 rounded-xl bg-white border border-gray-200 text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors disabled:opacity-40 disabled:hover:bg-white disabled:hover:text-gray-600 cursor-pointer disabled:cursor-not-allowed"
               title="Trang sau"
             >
               <ChevronRight className="h-4 w-4" />
@@ -706,14 +706,14 @@ export default function Vocabulary() {
       {/* CRUD Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="glass-card w-full max-w-xl rounded-2xl border border-white/10 shadow-2xl overflow-hidden animate-zoom-in">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-white/5">
-              <h2 className="text-lg font-bold text-white">
+          <div className="glass-card w-full max-w-xl rounded-2xl border border-gray-200 shadow-2xl overflow-hidden animate-zoom-in">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+              <h2 className="text-lg font-bold text-gray-900">
                 {editingId ? 'Chỉnh sửa từ vựng' : 'Thêm từ mới'}
               </h2>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors cursor-pointer"
+                className="p-1.5 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-white transition-colors cursor-pointer"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -729,14 +729,14 @@ export default function Vocabulary() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs text-gray-300 block mb-1 font-semibold">Từ mới *</label>
+                  <label className="text-xs text-gray-700 block mb-1 font-semibold">Từ mới *</label>
                   <div className="flex gap-2">
                     <input
                       type="text"
                       required
                       value={form.word}
                       onChange={(e) => setForm({ ...form, word: e.target.value })}
-                      className="flex-1 min-w-0 bg-white/5 border border-white/10 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                      className="flex-1 min-w-0 bg-white border border-gray-200 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
                       placeholder="e.g. Serendipity"
                     />
                     <button
@@ -756,79 +756,79 @@ export default function Vocabulary() {
                   </div>
                 </div>
                 <div>
-                  <label className="text-xs text-gray-300 block mb-1 font-semibold">Phiên âm</label>
+                  <label className="text-xs text-gray-700 block mb-1 font-semibold">Phiên âm</label>
                   <input
                     type="text"
                     value={form.pronunciation}
                     onChange={(e) => setForm({ ...form, pronunciation: e.target.value })}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                    className="w-full bg-white border border-gray-200 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
                     placeholder="e.g. /ˌserənˈdipədē/"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-xs text-gray-300 block mb-1 font-semibold">Ý nghĩa *</label>
+                <label className="text-xs text-gray-700 block mb-1 font-semibold">Ý nghĩa *</label>
                 <textarea
                   required
                   rows={2}
                   value={form.meaning}
                   onChange={(e) => setForm({ ...form, meaning: e.target.value })}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors resize-none"
+                  className="w-full bg-white border border-gray-200 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors resize-none"
                   placeholder="e.g. Sự tình cờ may mắn"
                 />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs text-gray-300 block mb-1 font-semibold">Ví dụ (Câu gốc)</label>
+                  <label className="text-xs text-gray-700 block mb-1 font-semibold">Ví dụ (Câu gốc)</label>
                   <input
                     type="text"
                     value={form.example}
                     onChange={(e) => setForm({ ...form, example: e.target.value })}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                    className="w-full bg-white border border-gray-200 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
                     placeholder="e.g. We met by serendipity."
                   />
                 </div>
                 <div>
-                  <label className="text-xs text-gray-300 block mb-1 font-semibold">Ví dụ (Bản dịch)</label>
+                  <label className="text-xs text-gray-700 block mb-1 font-semibold">Ví dụ (Bản dịch)</label>
                   <input
                     type="text"
                     value={form.exampleTranslation}
                     onChange={(e) => setForm({ ...form, exampleTranslation: e.target.value })}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                    className="w-full bg-white border border-gray-200 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
                     placeholder="e.g. Chúng tôi gặp nhau do tình cờ."
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-xs text-gray-300 block mb-1 font-semibold">Ghi chú thêm</label>
+                <label className="text-xs text-gray-700 block mb-1 font-semibold">Ghi chú thêm</label>
                 <textarea
                   rows={2}
                   value={form.notes}
                   onChange={(e) => setForm({ ...form, notes: e.target.value })}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors resize-none"
+                  className="w-full bg-white border border-gray-200 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors resize-none"
                   placeholder="Thêm giải nghĩa, cụm đi kèm hoặc từ đồng nghĩa..."
                 />
               </div>
 
               <div>
-                <label className="text-xs text-gray-300 block mb-1 font-semibold">Tags (cách nhau bằng dấu phẩy)</label>
+                <label className="text-xs text-gray-700 block mb-1 font-semibold">Tags (cách nhau bằng dấu phẩy)</label>
                 <input
                   type="text"
                   value={form.tags}
                   onChange={(e) => setForm({ ...form, tags: e.target.value })}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                  className="w-full bg-white border border-gray-200 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
                   placeholder="e.g. IELTS, Business, N5"
                 />
               </div>
 
-              <div className="flex gap-3 pt-3 border-t border-white/5">
+              <div className="flex gap-3 pt-3 border-t border-gray-200">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="flex-1 bg-white/5 hover:bg-white/10 text-white font-medium py-2 px-4 rounded-xl text-sm transition-colors border border-white/5 cursor-pointer"
+                  className="flex-1 bg-white hover:bg-gray-50 text-gray-900 font-medium py-2 px-4 rounded-xl text-sm transition-colors border border-gray-200 cursor-pointer"
                 >
                   Hủy
                 </button>
@@ -846,29 +846,29 @@ export default function Vocabulary() {
       {/* Extract Modal */}
       {isExtractModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="glass-card w-full max-w-xl rounded-2xl border border-white/10 shadow-2xl overflow-hidden animate-zoom-in">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-white/5">
-              <h2 className="text-lg font-bold text-white flex items-center gap-2">
+          <div className="glass-card w-full max-w-xl rounded-2xl border border-gray-200 shadow-2xl overflow-hidden animate-zoom-in">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+              <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
                 <Sparkles className="h-5 w-5 text-teal-400" />
                 AI Trích xuất Từ vựng
               </h2>
               <button
                 onClick={() => !isExtracting && setIsExtractModalOpen(false)}
-                className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors cursor-pointer"
+                className="p-1.5 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-white transition-colors cursor-pointer"
               >
                 <X className="h-5 w-5" />
               </button>
             </div>
 
             {/* Tab Switching headers */}
-            <div className="flex border-b border-white/5 px-6">
+            <div className="flex border-b border-gray-200 px-6">
               <button
                 type="button"
                 onClick={() => !isExtracting && setExtractTab('text')}
                 className={`py-2.5 px-4 text-sm font-semibold border-b-2 transition-all cursor-pointer ${
                   extractTab === 'text'
                     ? 'border-teal-500 text-teal-400'
-                    : 'border-transparent text-gray-400 hover:text-white'
+                    : 'border-transparent text-gray-600 hover:text-gray-900'
                 }`}
               >
                 Dán văn bản
@@ -879,7 +879,7 @@ export default function Vocabulary() {
                 className={`py-2.5 px-4 text-sm font-semibold border-b-2 transition-all cursor-pointer ${
                   extractTab === 'excel'
                     ? 'border-teal-500 text-teal-400'
-                    : 'border-transparent text-gray-400 hover:text-white'
+                    : 'border-transparent text-gray-600 hover:text-gray-900'
                 }`}
               >
                 Tải lên Excel
@@ -888,7 +888,7 @@ export default function Vocabulary() {
 
             {extractTab === 'text' ? (
               <form onSubmit={handleExtract} className="p-6 space-y-4">
-                <p className="text-sm text-gray-400">
+                <p className="text-sm text-gray-600">
                   Dán một đoạn văn bản hoặc tài liệu vào đây. AI sẽ tự động đọc, trích xuất tất cả từ vựng nổi bật và lưu thẳng vào Sổ tay của bạn.
                 </p>
 
@@ -906,17 +906,17 @@ export default function Vocabulary() {
                     value={extractText}
                     onChange={(e) => setExtractText(e.target.value)}
                     disabled={isExtracting}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-teal-500 transition-colors resize-none disabled:opacity-50 text-gray-200"
+                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-teal-500 transition-colors resize-none disabled:opacity-50 text-gray-800"
                     placeholder="Paste your English text here..."
                   />
                 </div>
 
-                <div className="flex gap-3 pt-3 border-t border-white/5">
+                <div className="flex gap-3 pt-3 border-t border-gray-200">
                   <button
                     type="button"
                     onClick={() => setIsExtractModalOpen(false)}
                     disabled={isExtracting}
-                    className="flex-1 bg-white/5 hover:bg-white/10 text-white font-medium py-2 px-4 rounded-xl text-sm transition-colors border border-white/5 cursor-pointer disabled:opacity-50"
+                    className="flex-1 bg-white hover:bg-gray-50 text-gray-900 font-medium py-2 px-4 rounded-xl text-sm transition-colors border border-gray-200 cursor-pointer disabled:opacity-50"
                   >
                     Hủy
                   </button>
@@ -938,7 +938,7 @@ export default function Vocabulary() {
               </form>
             ) : (
               <form onSubmit={handleImportExcel} className="p-6 space-y-4">
-                <p className="text-sm text-gray-400">
+                <p className="text-sm text-gray-600">
                   Tải lên tệp tài liệu Excel chứa danh sách từ vựng. Hệ thống sẽ tự động phân tích các cột: Từ vựng (Word), Phiên âm (Pronunciation), và Ý nghĩa (Meaning) để nhập vào.
                 </p>
 
@@ -958,7 +958,7 @@ export default function Vocabulary() {
                       ? 'border-teal-500 bg-teal-500/5'
                       : excelFile
                       ? 'border-indigo-500 bg-indigo-500/5'
-                      : 'border-white/10 hover:border-teal-500/50 bg-white/5'
+                      : 'border-gray-200 hover:border-teal-500/50 bg-white'
                   }`}
                   onClick={() => document.getElementById('excel-file-input')?.click()}
                 >
@@ -976,7 +976,7 @@ export default function Vocabulary() {
                         <FileSpreadsheet className="h-6 w-6" />
                       </div>
                       <div>
-                        <p className="text-sm font-semibold text-white max-w-[250px] mx-auto truncate">
+                        <p className="text-sm font-semibold text-gray-900 max-w-[250px] mx-auto truncate">
                           {excelFile.name}
                         </p>
                         <p className="text-xs text-gray-500">
@@ -997,11 +997,11 @@ export default function Vocabulary() {
                     </div>
                   ) : (
                     <div className="space-y-2">
-                      <div className="mx-auto w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-teal-400">
+                      <div className="mx-auto w-12 h-12 rounded-full bg-white flex items-center justify-center text-gray-600 hover:text-teal-400">
                         <UploadCloud className="h-6 w-6" />
                       </div>
                       <div>
-                        <p className="text-sm font-semibold text-white">
+                        <p className="text-sm font-semibold text-gray-900">
                           Kéo thả tệp Excel vào đây hoặc click để chọn
                         </p>
                         <p className="text-xs text-gray-500">
@@ -1012,12 +1012,12 @@ export default function Vocabulary() {
                   )}
                 </div>
 
-                <div className="flex gap-3 pt-3 border-t border-white/5">
+                <div className="flex gap-3 pt-3 border-t border-gray-200">
                   <button
                     type="button"
                     onClick={() => setIsExtractModalOpen(false)}
                     disabled={isExtracting}
-                    className="flex-1 bg-white/5 hover:bg-white/10 text-white font-medium py-2 px-4 rounded-xl text-sm transition-colors border border-white/5 cursor-pointer disabled:opacity-50"
+                    className="flex-1 bg-white hover:bg-gray-50 text-gray-900 font-medium py-2 px-4 rounded-xl text-sm transition-colors border border-gray-200 cursor-pointer disabled:opacity-50"
                   >
                     Hủy
                   </button>
@@ -1045,21 +1045,21 @@ export default function Vocabulary() {
       {/* Custom Delete Confirmation Modal */}
       {isDeleteConfirmOpen && deleteId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="glass-card w-full max-w-sm rounded-2xl border border-white/10 shadow-2xl p-6 space-y-4 animate-zoom-in text-center">
+          <div className="glass-card w-full max-w-sm rounded-2xl border border-gray-200 shadow-2xl p-6 space-y-4 animate-zoom-in text-center">
             <div className="mx-auto w-12 h-12 rounded-full bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400">
               <Trash2 className="h-6 w-6" />
             </div>
             <div className="space-y-2">
-              <h3 className="text-lg font-bold text-white font-sans">Xóa từ vựng?</h3>
-              <p className="text-xs text-gray-400 leading-relaxed font-sans">
-                Bạn có chắc chắn muốn xóa từ <span className="font-semibold text-white">"{deleteWord}"</span> khỏi sổ tay không? Hành động này không thể hoàn tác.
+              <h3 className="text-lg font-bold text-gray-900 font-sans">Xóa từ vựng?</h3>
+              <p className="text-xs text-gray-600 leading-relaxed font-sans">
+                Bạn có chắc chắn muốn xóa từ <span className="font-semibold text-gray-900">"{deleteWord}"</span> khỏi sổ tay không? Hành động này không thể hoàn tác.
               </p>
             </div>
             <div className="flex gap-3 pt-2">
               <button
                 type="button"
                 onClick={() => setIsDeleteConfirmOpen(false)}
-                className="flex-1 bg-white/5 hover:bg-white/10 text-white font-medium py-2 px-4 rounded-xl text-sm transition-colors border border-white/5 cursor-pointer font-sans"
+                className="flex-1 bg-white hover:bg-gray-50 text-gray-900 font-medium py-2 px-4 rounded-xl text-sm transition-colors border border-gray-200 cursor-pointer font-sans"
               >
                 Hủy
               </button>

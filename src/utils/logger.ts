@@ -1,4 +1,4 @@
-export async function logErrorToBackend(error: any, context?: string) {
+export async function logErrorToBackend(error: unknown, context?: string) {
   try {
     const message = error instanceof Error 
       ? error.message 
@@ -28,7 +28,8 @@ export async function logErrorToBackend(error: any, context?: string) {
 export function setupFetchInterceptor() {
   const originalFetch = window.fetch;
   window.fetch = async function (...args) {
-    let [input, init] = args;
+    const input = args[0];
+    let init = args[1];
     const token = localStorage.getItem('token');
     if (token) {
       if (typeof input === 'string') {
@@ -45,7 +46,7 @@ export function setupFetchInterceptor() {
           if (!req.headers.has('Authorization')) {
             req.headers.set('Authorization', `Bearer ${token}`);
           }
-        } catch (e) {
+        } catch {
           try {
             const req = input as Request;
             const newHeaders = new Headers(req.headers);
@@ -85,7 +86,7 @@ export function setupFetchInterceptor() {
               'GlobalFetchInterceptor'
             );
           }
-        } catch (e) {
+        } catch {
           // Fail silently during extraction of response text
         }
       }

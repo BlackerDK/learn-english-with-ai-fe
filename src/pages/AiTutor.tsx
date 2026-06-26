@@ -130,25 +130,25 @@ export default function AiTutor() {
   }
 
   return (
-    <div className="glass-card rounded-3xl overflow-hidden border border-white/10 flex flex-col h-[75vh] animate-fade-in">
+    <div className="glass-card rounded-3xl overflow-hidden border border-gray-200 flex flex-col h-[75vh] animate-fade-in">
       {/* Header chat console */}
-      <div className="px-6 py-4 border-b border-white/5 flex items-center justify-between bg-white/2">
+      <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between bg-white/2">
         <div className="flex items-center gap-3">
           <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
             <Bot className="h-5 w-5 animate-pulse" />
           </div>
           <div>
-            <h2 className="text-sm font-bold text-white flex items-center gap-1.5">
+            <h2 className="text-sm font-bold text-gray-900 flex items-center gap-1.5">
               AI Tutor Language Assistant
               <span className="h-2 w-2 rounded-full bg-emerald-400"></span>
             </h2>
-            <p className="text-[10px] text-gray-400">Gemini 1.5 Flash • Hoạt động 24/7</p>
+            <p className="text-[10px] text-gray-600">Gemini 1.5 Flash • Hoạt động 24/7</p>
           </div>
         </div>
 
         <button
           onClick={() => setIsConfirmOpen(true)}
-          className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-rose-400 transition-colors border border-white/5 cursor-pointer"
+          className="p-2 rounded-xl bg-white hover:bg-gray-50 text-gray-600 hover:text-rose-400 transition-colors border border-gray-200 cursor-pointer"
           title="Xóa lịch sử trò chuyện"
         >
           <Trash2 className="h-4.5 w-4.5" />
@@ -157,7 +157,7 @@ export default function AiTutor() {
 
       {/* Suggestion Chips */}
       {messages.length === 1 && (
-        <div className="p-4 bg-white/1 border-b border-white/5 flex flex-wrap gap-2 justify-center">
+        <div className="p-4 bg-white/1 border-b border-gray-200 flex flex-wrap gap-2 justify-center">
           {suggestionChips.map((chip, idx) => (
             <button
               key={idx}
@@ -192,7 +192,7 @@ export default function AiTutor() {
             <div className={`p-4 rounded-2xl text-sm leading-relaxed ${
               m.sender === 'User'
                 ? 'bg-gradient-to-br from-indigo-500/20 to-indigo-600/30 text-gray-100 border border-indigo-500/15 rounded-tr-none'
-                : 'bg-white/3 text-gray-200 border border-white/5 rounded-tl-none whitespace-pre-wrap'
+                : 'bg-white/3 text-gray-800 border border-gray-200 rounded-tl-none whitespace-pre-wrap'
             }`}>
               {m.text}
               <span className="block text-[9px] text-gray-500 mt-2 text-right">
@@ -206,7 +206,7 @@ export default function AiTutor() {
             <div className="p-2 h-8 w-8 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 flex items-center justify-center shrink-0">
               <Bot className="h-4 w-4" />
             </div>
-            <div className="p-4 rounded-2xl bg-white/3 border border-white/5 rounded-tl-none flex items-center gap-1.5">
+            <div className="p-4 rounded-2xl bg-white/3 border border-gray-200 rounded-tl-none flex items-center gap-1.5">
               <span className="h-2 w-2 rounded-full bg-indigo-400 animate-bounce"></span>
               <span className="h-2 w-2 rounded-full bg-indigo-400 animate-bounce" style={{ animationDelay: '0.2s' }}></span>
               <span className="h-2 w-2 rounded-full bg-indigo-400 animate-bounce" style={{ animationDelay: '0.4s' }}></span>
@@ -222,14 +222,14 @@ export default function AiTutor() {
           e.preventDefault();
           handleSend(input);
         }}
-        className="p-4 border-t border-white/5 bg-white/1 flex gap-3 items-center"
+        className="p-4 border-t border-gray-200 bg-white/1 flex gap-3 items-center"
       >
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Hỏi AI Tutor của bạn về bất cứ điều gì (ví dụ: 'Nghĩa của từ eloquence là gì?')..."
-          className="flex-1 bg-white/5 border border-white/10 rounded-2xl px-5 py-3 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+          className="flex-1 bg-white border border-gray-200 rounded-2xl px-5 py-3 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
           disabled={loading}
         />
         <button
@@ -249,8 +249,8 @@ export default function AiTutor() {
               <Trash2 className="h-6 w-6" />
             </div>
             <div className="space-y-2">
-              <h3 className="text-lg font-bold text-white font-sans">Xóa lịch sử trò chuyện?</h3>
-              <p className="text-xs text-gray-400 leading-relaxed font-sans">
+              <h3 className="text-lg font-bold text-gray-900 font-sans">Xóa lịch sử trò chuyện?</h3>
+              <p className="text-xs text-gray-600 leading-relaxed font-sans">
                 Bạn có chắc chắn muốn xóa toàn bộ lịch sử trò chuyện với AI Tutor không? Hành động này không thể hoàn tác.
               </p>
             </div>
@@ -258,7 +258,7 @@ export default function AiTutor() {
               <button
                 type="button"
                 onClick={() => setIsConfirmOpen(false)}
-                className="flex-1 bg-white/5 hover:bg-white/10 text-white font-medium py-2 px-4 rounded-xl text-sm transition-colors border border-white/5 cursor-pointer font-sans"
+                className="flex-1 bg-white hover:bg-gray-50 text-gray-900 font-medium py-2 px-4 rounded-xl text-sm transition-colors border border-gray-200 cursor-pointer font-sans"
               >
                 Hủy
               </button>

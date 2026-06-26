@@ -35,26 +35,26 @@ export default function ApiErrorPopup({ error, onClose, onGoToSettings }: Props)
             </span>
           </div>
           <button onClick={onClose}
-            className="p-1 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer">
+            className="p-1 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors cursor-pointer">
             <X className="h-4 w-4" />
           </button>
         </div>
 
         {/* Body */}
         <div className="px-5 py-5 space-y-4">
-          <p className="text-sm text-gray-200 leading-relaxed">
+          <p className="text-sm text-gray-800 leading-relaxed">
             {error.message || 'Đã xảy ra lỗi không xác định.'}
           </p>
 
           {isApiKeyError && (
             <div className="space-y-3">
-              <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 space-y-2 text-xs text-gray-400 leading-relaxed">
-                <p className="font-semibold text-gray-300">Cách lấy API Key miễn phí:</p>
+              <div className="p-3.5 rounded-xl bg-white border border-gray-200 space-y-2 text-xs text-gray-600 leading-relaxed">
+                <p className="font-semibold text-gray-700">Cách lấy API Key miễn phí:</p>
                 <div className="space-y-1.5">
                   <div className="flex items-start gap-2">
                     <span className="w-4 h-4 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-indigo-400 text-[9px] flex items-center justify-center shrink-0 mt-0.5 font-bold">1</span>
                     <span>
-                      <span className="text-white font-medium">Gemini</span>: Truy cập{' '}
+                      <span className="text-gray-900 font-medium">Gemini</span>: Truy cập{' '}
                       <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer"
                         className="text-indigo-400 hover:text-indigo-300 underline inline-flex items-center gap-0.5">
                         aistudio.google.com/apikey <ExternalLink className="h-2.5 w-2.5" />
@@ -65,7 +65,7 @@ export default function ApiErrorPopup({ error, onClose, onGoToSettings }: Props)
                   <div className="flex items-start gap-2">
                     <span className="w-4 h-4 rounded-full bg-cyan-500/20 border border-cyan-500/30 text-cyan-400 text-[9px] flex items-center justify-center shrink-0 mt-0.5 font-bold">2</span>
                     <span>
-                      <span className="text-white font-medium">Groq</span> (backup): Truy cập{' '}
+                      <span className="text-gray-900 font-medium">Groq</span> (backup): Truy cập{' '}
                       <a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer"
                         className="text-cyan-400 hover:text-cyan-300 underline inline-flex items-center gap-0.5">
                         console.groq.com/keys <ExternalLink className="h-2.5 w-2.5" />
@@ -74,7 +74,7 @@ export default function ApiErrorPopup({ error, onClose, onGoToSettings }: Props)
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="w-4 h-4 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-[9px] flex items-center justify-center shrink-0 mt-0.5 font-bold">3</span>
-                    <span>Dán key vào <span className="text-white font-medium">Cài đặt → AI API Key</span> trong ứng dụng</span>
+                    <span>Dán key vào <span className="text-gray-900 font-medium">Cài đặt → AI API Key</span> trong ứng dụng</span>
                   </div>
                 </div>
               </div>
@@ -83,10 +83,10 @@ export default function ApiErrorPopup({ error, onClose, onGoToSettings }: Props)
 
           {!isApiKeyError && error.detail && (
             <details className="group">
-              <summary className="text-xs text-gray-500 cursor-pointer hover:text-gray-400 transition-colors select-none">
+              <summary className="text-xs text-gray-500 cursor-pointer hover:text-gray-600 transition-colors select-none">
                 Chi tiết lỗi kỹ thuật
               </summary>
-              <p className="mt-2 text-[11px] text-gray-500 font-mono bg-black/30 p-3 rounded-lg border border-white/5 leading-relaxed break-all">
+              <p className="mt-2 text-[11px] text-gray-500 font-mono bg-black/30 p-3 rounded-lg border border-gray-200 leading-relaxed break-all">
                 {error.detail}
               </p>
             </details>
@@ -96,7 +96,7 @@ export default function ApiErrorPopup({ error, onClose, onGoToSettings }: Props)
         {/* Footer */}
         <div className={`px-5 py-4 border-t flex gap-3 ${isApiKeyError ? 'border-amber-500/10' : 'border-rose-500/10'}`}>
           <button onClick={onClose}
-            className="flex-1 bg-white/5 hover:bg-white/10 text-white font-medium py-2 rounded-xl text-sm border border-white/10 cursor-pointer transition-colors">
+            className="flex-1 bg-white hover:bg-gray-50 text-gray-900 font-medium py-2 rounded-xl text-sm border border-gray-200 cursor-pointer transition-colors">
             Đóng
           </button>
           {isApiKeyError && onGoToSettings && (

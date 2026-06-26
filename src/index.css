@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900;1000&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -7,51 +8,103 @@
   --color-accent-indigo: #6366f1;
   --color-accent-violet: #8b5cf6;
   --color-accent-cyan: #06b6d4;
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-sans: 'Nunito', system-ui, sans-serif;
+  --color-sky-blue: #6EC6FF;
+  --color-mint-green: #7EE787;
+  --color-sunshine: #FFD93D;
+  --color-coral: #FF8A65;
+  --color-lavender: #C8B6FF;
+  --color-soft-gray: #F7F9FC;
 }
 
 /* Custom styles and animations */
 @layer base {
   body {
-    background-color: var(--color-bg-dark);
-    color: #f3f4f6;
+    background-color: var(--color-soft-gray);
+    color: #1f2937;
     font-family: var(--font-sans);
     overflow-x: hidden;
   }
 }
 
-/* Glassmorphism utility */
+/* Animations for Landing Page */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes cloud-drift {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(20px); }
+  100% { transform: translateX(0); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-cloud {
+  animation: cloud-drift 8s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 4.5s ease-in-out infinite reverse;
+}
+
+/* The massive white board container for main layout */
+.main-board {
+  background: transparent;
+  min-height: calc(100vh - 120px);
+}
+
+/* Fun Card utility */
 .glass {
-  background: rgba(17, 24, 39, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #ffffff;
+  border: 4px solid #e5e7eb;
+  border-radius: 24px;
 }
 
 .glass-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #ffffff;
+  border: 3px solid #e2e8f0;
+  border-radius: 24px;
+  box-shadow: 0 8px 16px -4px rgba(0,0,0,0.05);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 12px 40px 0 rgba(99, 102, 241, 0.15);
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 20px -4px rgba(0,0,0,0.08);
+  border-color: var(--color-sky-blue);
 }
 
-/* Flashcard faces: no hover lift — transform is reserved for 3D flip */
+/* Typography */
+.fun-title {
+  color: #ffffff;
+  text-shadow: 
+    -2px -2px 0 #6366f1,
+    2px -2px 0 #6366f1,
+    -2px 2px 0 #6366f1,
+    2px 2px 0 #6366f1,
+    0px 4px 0 #4338ca;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.fun-title-dark {
+  color: #1e1b4b;
+  text-shadow: 0px 3px 0 #cbd5e1;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+}
+
+/* Flashcard faces */
 .glass-card.flashcard-face {
-  transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card.flashcard-face:hover {
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 12px 40px 0 rgba(99, 102, 241, 0.15);
   transform: none;
 }
 
@@ -61,21 +114,22 @@
 
 /* Scrollbar Customization */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
+  background: #f1f5f9;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  background: #cbd5e1;
+  border-radius: 10px;
+  border: 3px solid #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: #94a3b8;
 }
 
 /* 3D Card Flip Animation */

@@ -426,19 +426,19 @@ export default function Listening() {
           className="absolute z-50 glass-card p-4 rounded-xl border border-indigo-500/20 shadow-2xl max-w-xs space-y-3 bg-slate-900 text-left animate-zoom-in"
           style={{ left: `${Math.min(lookupPosition.x, window.innerWidth - 300)}px`, top: `${lookupPosition.y}px` }}
         >
-          <div className="flex items-center justify-between border-b border-white/5 pb-1.5">
-            <span className="font-extrabold text-sm text-white flex items-center gap-1">
+          <div className="flex items-center justify-between border-b border-gray-200 pb-1.5">
+            <span className="font-extrabold text-sm text-gray-900 flex items-center gap-1">
               <Sparkles className="h-3.5 w-3.5 text-indigo-400 animate-pulse" />
               Tra từ: "{lookupWord}"
             </span>
             <button
               onClick={() => setLookupPosition(null)}
-              className="p-0.5 rounded text-gray-500 hover:text-white transition-colors"
+              className="p-0.5 rounded text-gray-500 hover:text-gray-900 transition-colors"
             >
               <X className="h-4 w-4" />
             </button>
           </div>
-          <div className="text-xs text-gray-300 leading-relaxed overflow-y-auto max-h-36 pr-1 whitespace-pre-wrap">
+          <div className="text-xs text-gray-700 leading-relaxed overflow-y-auto max-h-36 pr-1 whitespace-pre-wrap">
             {lookupTranslation}
           </div>
           {!translating && (
@@ -458,7 +458,7 @@ export default function Listening() {
           <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
             Luyện nghe thông minh
           </h1>
-          <p className="text-gray-400 mt-1">Nghe audio chuẩn, tra từ vựng nhanh trực tiếp bằng cách click vào transcript.</p>
+          <p className="text-gray-600 mt-1">Nghe audio chuẩn, tra từ vựng nhanh trực tiếp bằng cách click vào transcript.</p>
         </div>
         <div className="flex gap-2 self-start sm:self-auto">
           <button
@@ -480,8 +480,8 @@ export default function Listening() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-[72vh]">
         {/* Left Side: Lesson List */}
-        <div className="glass-card rounded-2xl flex flex-col overflow-hidden border border-white/5 md:col-span-1">
-          <div className="p-4 border-b border-white/5 space-y-3">
+        <div className="glass-card rounded-2xl flex flex-col overflow-hidden border border-gray-200 md:col-span-1">
+          <div className="p-4 border-b border-gray-200 space-y-3">
             <div className="relative">
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-500" />
               <input
@@ -489,13 +489,13 @@ export default function Listening() {
                 placeholder="Tìm bài nghe..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full bg-white/5 border border-white/5 rounded-xl pl-9 pr-4 py-2 text-xs focus:outline-none focus:border-indigo-500/50 transition-colors"
+                className="w-full bg-white border border-gray-200 rounded-xl pl-9 pr-4 py-2 text-xs focus:outline-none focus:border-indigo-500/50 transition-colors"
               />
             </div>
             <select
               value={selectedLevel}
               onChange={(e) => setSelectedLevel(e.target.value)}
-              className="w-full bg-white/5 border border-white/5 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-indigo-500/50 text-gray-300"
+              className="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-indigo-500/50 text-gray-700"
             >
               <option value="" className="bg-bg-dark">Tất cả trình độ</option>
               {levels.map((l) => (
@@ -527,10 +527,10 @@ export default function Listening() {
                   }`}
                 >
                   <div className="space-y-1">
-                    <h3 className={`font-bold text-sm leading-snug ${selectedLesson?.id === lesson.id ? 'text-white' : 'text-gray-300'}`}>
+                    <h3 className={`font-bold text-sm leading-snug ${selectedLesson?.id === lesson.id ? 'text-gray-900' : 'text-gray-700'}`}>
                       {lesson.title}
                     </h3>
-                    <span className="inline-block px-1.5 py-0.5 rounded bg-white/5 border border-white/5 text-[9px] font-semibold text-indigo-400">
+                    <span className="inline-block px-1.5 py-0.5 rounded bg-white border border-gray-200 text-[9px] font-semibold text-indigo-400">
                       {lesson.level}
                     </span>
                   </div>
@@ -542,7 +542,7 @@ export default function Listening() {
         </div>
 
         {/* Right Side: Player Workspace */}
-        <div className="glass-card rounded-2xl flex flex-col overflow-hidden border border-white/5 md:col-span-2">
+        <div className="glass-card rounded-2xl flex flex-col overflow-hidden border border-gray-200 md:col-span-2">
           {selectedLesson ? (
             <div className="flex flex-col h-full overflow-hidden">
               {/* Hidden audio element */}
@@ -559,16 +559,16 @@ export default function Listening() {
               />
 
               {/* Player Top Bar */}
-              <div className="px-6 py-4 border-b border-white/5 flex flex-wrap items-center justify-between gap-4 bg-white/2">
+              <div className="px-6 py-4 border-b border-gray-200 flex flex-wrap items-center justify-between gap-4 bg-white/2">
                 <div className="space-y-1">
                   <span className="text-[10px] uppercase tracking-wider font-semibold text-indigo-400">Đang học nghe</span>
-                  <h2 className="text-base font-bold text-white leading-tight">{selectedLesson.title}</h2>
+                  <h2 className="text-base font-bold text-gray-900 leading-tight">{selectedLesson.title}</h2>
                 </div>
 
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => handleOpenEditModal(selectedLesson)}
-                    className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs bg-white/5 hover:bg-white/10 text-indigo-400 hover:text-indigo-300 border border-white/5 transition-colors cursor-pointer"
+                    className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs bg-white hover:bg-gray-50 text-indigo-400 hover:text-indigo-300 border border-gray-200 transition-colors cursor-pointer"
                     title="Chỉnh sửa bài nghe"
                   >
                     <Edit className="h-3.5 w-3.5" />
@@ -576,7 +576,7 @@ export default function Listening() {
                   </button>
                   <button
                     onClick={() => setIsDeleteConfirmOpen(true)}
-                    className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs bg-white/5 hover:bg-white/10 text-rose-400 hover:text-rose-300 border border-white/5 transition-colors cursor-pointer"
+                    className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs bg-white hover:bg-gray-50 text-rose-400 hover:text-rose-300 border border-gray-200 transition-colors cursor-pointer"
                     title="Xóa bài nghe"
                   >
                     <Trash2 className="h-3.5 w-3.5" />
@@ -588,8 +588,8 @@ export default function Listening() {
                     title={!hasAttempted ? 'Hãy kiểm tra bài nghe ít nhất 1 lần để xem Transcript' : ''}
                     className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs border transition-colors ${
                       hasAttempted 
-                        ? 'bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white border-white/5 cursor-pointer' 
-                        : 'bg-white/5 opacity-40 text-gray-500 border-transparent cursor-not-allowed'
+                        ? 'bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-900 border-gray-200 cursor-pointer' 
+                        : 'bg-white opacity-40 text-gray-500 border-transparent cursor-not-allowed'
                     }`}
                   >
                     {showTranscript ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
@@ -599,7 +599,7 @@ export default function Listening() {
               </div>
 
               {/* Audio Controls Console */}
-              <div className="p-6 border-b border-white/5 bg-white/1 flex flex-col sm:flex-row items-center justify-between gap-6">
+              <div className="p-6 border-b border-gray-200 bg-white/1 flex flex-col sm:flex-row items-center justify-between gap-6">
                 {/* Play/Pause control */}
                 <div className="flex items-center gap-4">
                   <button
@@ -609,8 +609,8 @@ export default function Listening() {
                     {isPlaying ? <Pause className="h-6 w-6" /> : <Play className="h-6 w-6 fill-white" />}
                   </button>
                   <div>
-                    <span className="text-xs text-gray-400 block font-medium">Trạng thái phát</span>
-                    <span className="text-sm font-semibold text-white">
+                    <span className="text-xs text-gray-600 block font-medium">Trạng thái phát</span>
+                    <span className="text-sm font-semibold text-gray-900">
                       {isPlaying ? (useTTS ? 'Đang đọc văn bản (TTS)...' : 'Đang phát âm thanh...') : 'Đã tạm dừng'}
                     </span>
                   </div>
@@ -618,7 +618,7 @@ export default function Listening() {
 
                 {/* Speed Controls */}
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-gray-400 font-medium mr-2">Tốc độ:</span>
+                  <span className="text-xs text-gray-600 font-medium mr-2">Tốc độ:</span>
                   {[0.5, 0.75, 1.0, 1.25, 1.5, 2.0].map((speed) => (
                     <button
                       key={speed}
@@ -626,7 +626,7 @@ export default function Listening() {
                       className={`px-2.5 py-1 rounded-lg text-[10px] font-bold border transition-colors cursor-pointer ${
                         playbackRate === speed
                           ? 'bg-indigo-500 border-indigo-500 text-white shadow shadow-indigo-500/10'
-                          : 'bg-white/5 border-white/5 text-gray-400 hover:text-white'
+                          : 'bg-white border-gray-200 text-gray-600 hover:text-gray-900'
                       }`}
                     >
                       {speed}x
@@ -648,9 +648,9 @@ export default function Listening() {
                     </div>
 
                     {/* Translation */}
-                    <div className="space-y-3 border-t md:border-t-0 md:border-l border-white/5 pt-6 md:pt-0 md:pl-8">
+                    <div className="space-y-3 border-t md:border-t-0 md:border-l border-gray-200 pt-6 md:pt-0 md:pl-8">
                       <h4 className="text-xs font-semibold text-cyan-400 uppercase tracking-wider">Bản dịch tiếng Việt</h4>
-                      <p className="text-sm md:text-base text-gray-300 leading-relaxed whitespace-pre-wrap">
+                      <p className="text-sm md:text-base text-gray-700 leading-relaxed whitespace-pre-wrap">
                         {selectedLesson.translation || 'Không có bản dịch cho bài học này.'}
                       </p>
                     </div>
@@ -668,7 +668,7 @@ export default function Listening() {
                         )}
                       </div>
                       {diffResult ? (
-                        <div className="w-full h-48 bg-white/5 border border-white/10 rounded-xl p-4 text-sm overflow-y-auto leading-relaxed font-sans shadow-inner">
+                        <div className="w-full h-48 bg-white border border-gray-200 rounded-xl p-4 text-sm overflow-y-auto leading-relaxed font-sans shadow-inner">
                           {diffResult.map((item, idx) => (
                             <span 
                               key={idx} 
@@ -682,7 +682,7 @@ export default function Listening() {
                         <textarea 
                           value={userInput}
                           onChange={(e) => setUserInput(e.target.value)}
-                          className="w-full h-48 bg-white/5 border border-white/10 rounded-xl p-4 text-sm focus:outline-none focus:border-indigo-500/50 transition-colors resize-none text-gray-200 leading-relaxed font-sans shadow-inner placeholder:text-gray-500"
+                          className="w-full h-48 bg-white border border-gray-200 rounded-xl p-4 text-sm focus:outline-none focus:border-indigo-500/50 transition-colors resize-none text-gray-800 leading-relaxed font-sans shadow-inner placeholder:text-gray-500"
                           placeholder="Bấm Play ở trên và gõ nội dung bạn nghe được vào đây (không phân biệt hoa/thường, không tính dấu chấm phẩy)..."
                         />
                       )}
@@ -691,7 +691,7 @@ export default function Listening() {
                       {diffResult && (
                         <button 
                           onClick={() => { setDiffResult(null); }}
-                          className="bg-white/5 hover:bg-white/10 text-gray-300 font-medium py-2 px-6 rounded-xl text-sm transition-all border border-white/5 cursor-pointer"
+                          className="bg-white hover:bg-gray-50 text-gray-700 font-medium py-2 px-6 rounded-xl text-sm transition-all border border-gray-200 cursor-pointer"
                         >
                           Làm lại
                         </button>
@@ -723,12 +723,12 @@ export default function Listening() {
       {/* Add New Lesson Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="glass-card w-full max-w-xl rounded-2xl border border-white/10 shadow-2xl overflow-hidden animate-zoom-in">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-white/5">
-              <h2 className="text-lg font-bold text-white">{editingId ? 'Chỉnh sửa bài nghe' : 'Thêm bài nghe mới'}</h2>
+          <div className="glass-card w-full max-w-xl rounded-2xl border border-gray-200 shadow-2xl overflow-hidden animate-zoom-in">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+              <h2 className="text-lg font-bold text-gray-900">{editingId ? 'Chỉnh sửa bài nghe' : 'Thêm bài nghe mới'}</h2>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors cursor-pointer"
+                className="p-1.5 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-white transition-colors cursor-pointer"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -743,25 +743,25 @@ export default function Listening() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="col-span-2 sm:col-span-1">
-                  <label className="text-xs text-gray-300 block mb-1 font-semibold">Tiêu đề bài nghe *</label>
+                  <label className="text-xs text-gray-700 block mb-1 font-semibold">Tiêu đề bài nghe *</label>
                   <input
                     type="text"
                     required
                     value={form.title}
                     onChange={(e) => setForm({ ...form, title: e.target.value })}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                    className="w-full bg-white border border-gray-200 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
                     placeholder="e.g. VOA - Learning English Lesson 1"
                   />
                 </div>
                 <div className="col-span-2 sm:col-span-1">
-                  <label className="text-xs text-gray-300 block mb-1 font-semibold">Trình độ (Level)</label>
+                  <label className="text-xs text-gray-700 block mb-1 font-semibold">Trình độ (Level)</label>
                   <select
                     value={form.level}
                     onChange={(e) => setForm({ ...form, level: e.target.value })}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                    className="w-full bg-white border border-gray-200 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
                   >
                     {levels.map((l) => (
-                      <option key={l} value={l} className="bg-bg-dark text-white">
+                      <option key={l} value={l} className="bg-bg-dark text-gray-900">
                         {l}
                       </option>
                     ))}
@@ -770,44 +770,44 @@ export default function Listening() {
               </div>
 
               <div>
-                <label className="text-xs text-gray-300 block mb-1 font-semibold">Đường dẫn File Audio (URL) (Tùy chọn)</label>
+                <label className="text-xs text-gray-700 block mb-1 font-semibold">Đường dẫn File Audio (URL) (Tùy chọn)</label>
                 <input
                   type="url"
                   value={form.audioUrl}
                   onChange={(e) => setForm({ ...form, audioUrl: e.target.value })}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                  className="w-full bg-white border border-gray-200 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
                   placeholder="Bỏ trống hệ thống sẽ tự động đọc (TTS)..."
                 />
               </div>
 
               <div>
-                <label className="text-xs text-gray-300 block mb-1 font-semibold">Transcript bài viết (Nguyên văn) *</label>
+                <label className="text-xs text-gray-700 block mb-1 font-semibold">Transcript bài viết (Nguyên văn) *</label>
                 <textarea
                   required
                   rows={4}
                   value={form.transcript}
                   onChange={(e) => setForm({ ...form, transcript: e.target.value })}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors resize-none"
+                  className="w-full bg-white border border-gray-200 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors resize-none"
                   placeholder="Nhập nội dung văn bản tiếng nước ngoài nghe được tại đây..."
                 />
               </div>
 
               <div>
-                <label className="text-xs text-gray-300 block mb-1 font-semibold">Bản dịch tiếng Việt</label>
+                <label className="text-xs text-gray-700 block mb-1 font-semibold">Bản dịch tiếng Việt</label>
                 <textarea
                   rows={3}
                   value={form.translation}
                   onChange={(e) => setForm({ ...form, translation: e.target.value })}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors resize-none"
+                  className="w-full bg-white border border-gray-200 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors resize-none"
                   placeholder="Dịch nội dung bài nghe sang tiếng Việt (nếu có)..."
                 />
               </div>
 
-              <div className="flex gap-3 pt-3 border-t border-white/5">
+              <div className="flex gap-3 pt-3 border-t border-gray-200">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="flex-1 bg-white/5 hover:bg-white/10 text-white border border-white/5 font-medium py-2 px-4 rounded-xl text-sm transition-colors cursor-pointer"
+                  className="flex-1 bg-white hover:bg-gray-50 text-gray-900 border border-gray-200 font-medium py-2 px-4 rounded-xl text-sm transition-colors cursor-pointer"
                 >
                   Hủy
                 </button>
@@ -826,14 +826,14 @@ export default function Listening() {
       {/* Import Excel Modal */}
       {isImportOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="glass-card w-full max-w-lg rounded-2xl border border-white/10 shadow-2xl overflow-hidden animate-zoom-in">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-white/5">
+          <div className="glass-card w-full max-w-lg rounded-2xl border border-gray-200 shadow-2xl overflow-hidden animate-zoom-in">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
               <div className="flex items-center gap-2">
                 <FileSpreadsheet className="h-5 w-5 text-teal-400" />
-                <h2 className="text-lg font-bold text-white">Import bài nghe từ Excel</h2>
+                <h2 className="text-lg font-bold text-gray-900">Import bài nghe từ Excel</h2>
               </div>
               <button onClick={() => setIsImportOpen(false)}
-                className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 cursor-pointer">
+                className="p-1.5 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-white cursor-pointer">
                 <X className="h-5 w-5" />
               </button>
             </div>
@@ -854,7 +854,7 @@ export default function Listening() {
                     <tbody>
                       <tr>
                         {['VOA Lesson 1', 'Intermediate', 'https://...mp3', 'Learning is...', 'Học tập là...'].map((v, i) => (
-                          <td key={i} className="px-2 py-1.5 text-gray-400 border border-white/5 whitespace-nowrap">{v}</td>
+                          <td key={i} className="px-2 py-1.5 text-gray-600 border border-gray-200 whitespace-nowrap">{v}</td>
                         ))}
                       </tr>
                     </tbody>
@@ -898,7 +898,7 @@ export default function Listening() {
                       </div>
                     ) : (
                       <div>
-                        <p className="text-sm text-gray-400">Kéo thả file Excel vào đây</p>
+                        <p className="text-sm text-gray-600">Kéo thả file Excel vào đây</p>
                         <p className="text-[10px] text-gray-500 mt-1">hoặc click để chọn file (.xlsx, .xls)</p>
                       </div>
                     )}
@@ -907,7 +907,7 @@ export default function Listening() {
 
                 <div className="flex gap-3 pt-1">
                   <button type="button" onClick={() => setIsImportOpen(false)}
-                    className="flex-1 bg-white/5 hover:bg-white/10 text-white border border-white/5 font-medium py-2 px-4 rounded-xl text-sm cursor-pointer transition-colors">
+                    className="flex-1 bg-white hover:bg-gray-50 text-gray-900 border border-gray-200 font-medium py-2 px-4 rounded-xl text-sm cursor-pointer transition-colors">
                     {importResult ? 'Đóng' : 'Hủy'}
                   </button>
                   {!importResult && (
@@ -926,21 +926,21 @@ export default function Listening() {
       {/* Custom Delete Confirmation Modal */}
       {isDeleteConfirmOpen && selectedLesson && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="glass-card w-full max-w-sm rounded-2xl border border-white/10 shadow-2xl p-6 space-y-4 animate-zoom-in text-center">
+          <div className="glass-card w-full max-w-sm rounded-2xl border border-gray-200 shadow-2xl p-6 space-y-4 animate-zoom-in text-center">
             <div className="mx-auto w-12 h-12 rounded-full bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400">
               <Trash2 className="h-6 w-6" />
             </div>
             <div className="space-y-2">
-              <h3 className="text-lg font-bold text-white font-sans">Xóa bài nghe?</h3>
-              <p className="text-xs text-gray-400 leading-relaxed font-sans">
-                Bạn có chắc chắn muốn xóa bài nghe <span className="font-semibold text-white">"{selectedLesson.title}"</span> không? Hành động này không thể hoàn tác.
+              <h3 className="text-lg font-bold text-gray-900 font-sans">Xóa bài nghe?</h3>
+              <p className="text-xs text-gray-600 leading-relaxed font-sans">
+                Bạn có chắc chắn muốn xóa bài nghe <span className="font-semibold text-gray-900">"{selectedLesson.title}"</span> không? Hành động này không thể hoàn tác.
               </p>
             </div>
             <div className="flex gap-3 pt-2">
               <button
                 type="button"
                 onClick={() => setIsDeleteConfirmOpen(false)}
-                className="flex-1 bg-white/5 hover:bg-white/10 text-white font-medium py-2 px-4 rounded-xl text-sm transition-colors border border-white/5 cursor-pointer font-sans"
+                className="flex-1 bg-white hover:bg-gray-50 text-gray-900 font-medium py-2 px-4 rounded-xl text-sm transition-colors border border-gray-200 cursor-pointer font-sans"
               >
                 Hủy
               </button>

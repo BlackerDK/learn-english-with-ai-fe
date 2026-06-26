@@ -116,22 +116,22 @@ export default function Login({ onLoginSuccess }: Props) {
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse delay-700"></div>
 
-      <div className="glass w-full max-w-md rounded-3xl border border-white/5 shadow-2xl p-6 md:p-8 space-y-6 z-10 animate-fade-in">
+      <div className="glass w-full max-w-md rounded-3xl border border-gray-200 shadow-2xl p-6 md:p-8 space-y-6 z-10 animate-fade-in">
         {/* Brand/Logo */}
         <div className="text-center space-y-2">
           <div className="inline-flex p-3 bg-gradient-to-r from-indigo-500 to-violet-600 rounded-2xl text-white shadow-lg shadow-indigo-500/25">
             <Sparkles className="h-6 w-6 animate-pulse" />
           </div>
-          <h1 className="text-2xl font-extrabold tracking-tight text-white">ANTIGRAVITY LANG</h1>
+          <h1 className="text-2xl font-extrabold tracking-tight text-gray-900">ANTIGRAVITY LANG</h1>
           <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider">AI Language Studio</p>
         </div>
 
         {/* Tab Selector */}
-        <div className="flex bg-white/5 p-1 rounded-xl border border-white/5">
+        <div className="flex bg-white p-1 rounded-xl border border-gray-200">
           <button
             onClick={() => { setIsLogin(true); setError(''); setInfo(''); }}
             className={`flex-1 py-2 text-xs font-semibold rounded-lg transition-all duration-200 cursor-pointer ${
-              isLogin ? 'bg-white/10 text-white shadow-md' : 'text-gray-400 hover:text-white'
+              isLogin ? 'bg-gray-50 text-gray-900 shadow-md' : 'text-gray-600 hover:text-gray-900'
             }`}
           >
             Đăng nhập
@@ -139,7 +139,7 @@ export default function Login({ onLoginSuccess }: Props) {
           <button
             onClick={() => { setIsLogin(false); setError(''); setInfo(''); }}
             className={`flex-1 py-2 text-xs font-semibold rounded-lg transition-all duration-200 cursor-pointer ${
-              !isLogin ? 'bg-white/10 text-white shadow-md' : 'text-gray-400 hover:text-white'
+              !isLogin ? 'bg-gray-50 text-gray-900 shadow-md' : 'text-gray-600 hover:text-gray-900'
             }`}
           >
             Đăng ký
@@ -165,7 +165,7 @@ export default function Login({ onLoginSuccess }: Props) {
         <form onSubmit={handleSubmit} className="space-y-4">
           {!isLogin && (
             <div className="space-y-1">
-              <label className="text-xs text-gray-400 font-medium">Tên hiển thị (Tùy chọn)</label>
+              <label className="text-xs text-gray-600 font-medium">Tên hiển thị (Tùy chọn)</label>
               <div className="relative">
                 <User className="absolute left-3.5 top-3 h-4.5 w-4.5 text-gray-500" />
                 <input
@@ -173,14 +173,14 @@ export default function Login({ onLoginSuccess }: Props) {
                   placeholder="Ví dụ: Nguyễn Văn A"
                   value={displayName}
                   onChange={(e) => setDisplayName(e.target.value)}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl pl-11 pr-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 transition-colors text-white placeholder:text-gray-600"
+                  className="w-full bg-white border border-gray-200 rounded-xl pl-11 pr-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 transition-colors text-gray-900 placeholder:text-gray-600"
                 />
               </div>
             </div>
           )}
 
           <div className="space-y-1">
-            <label className="text-xs text-gray-400 font-medium font-sans">Tên đăng nhập</label>
+            <label className="text-xs text-gray-600 font-medium font-sans">Tên đăng nhập</label>
             <div className="relative">
               <User className="absolute left-3.5 top-3 h-4.5 w-4.5 text-gray-500" />
               <input
@@ -189,13 +189,13 @@ export default function Login({ onLoginSuccess }: Props) {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
-                className="w-full bg-white/5 border border-white/10 rounded-xl pl-11 pr-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 transition-colors text-white placeholder:text-gray-600"
+                className="w-full bg-white border border-gray-200 rounded-xl pl-11 pr-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 transition-colors text-gray-900 placeholder:text-gray-600"
               />
             </div>
           </div>
 
           <div className="space-y-1">
-            <label className="text-xs text-gray-400 font-medium">Mật khẩu</label>
+            <label className="text-xs text-gray-600 font-medium">Mật khẩu</label>
             <div className="relative">
               <Lock className="absolute left-3.5 top-3 h-4.5 w-4.5 text-gray-500" />
               <input
@@ -204,12 +204,12 @@ export default function Login({ onLoginSuccess }: Props) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full bg-white/5 border border-white/10 rounded-xl pl-11 pr-11 py-2.5 text-sm focus:outline-none focus:border-indigo-500 transition-colors text-white placeholder:text-gray-600"
+                className="w-full bg-white border border-gray-200 rounded-xl pl-11 pr-11 py-2.5 text-sm focus:outline-none focus:border-indigo-500 transition-colors text-gray-900 placeholder:text-gray-600"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3.5 top-3 text-gray-500 hover:text-white transition-colors cursor-pointer"
+                className="absolute right-3.5 top-3 text-gray-500 hover:text-gray-900 transition-colors cursor-pointer"
               >
                 {showPassword ? <EyeOff className="h-4.5 w-4.5" /> : <Eye className="h-4.5 w-4.5" />}
               </button>
@@ -230,14 +230,14 @@ export default function Login({ onLoginSuccess }: Props) {
         {isLogin && (
           <div className="space-y-4 pt-2">
             <div className="relative flex items-center justify-center">
-              <div className="absolute w-full border-t border-white/5"></div>
+              <div className="absolute w-full border-t border-gray-200"></div>
               <span className="relative px-3 bg-[#0c101b] text-[10px] text-gray-500 font-semibold uppercase tracking-wider">Hoặc sử dụng tài khoản mẫu</span>
             </div>
 
             <button
               onClick={handleQuickAdminLogin}
               disabled={loading}
-              className="w-full py-2.5 bg-white/5 hover:bg-white/10 text-white font-medium text-xs rounded-xl border border-white/10 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-2.5 bg-white hover:bg-gray-50 text-gray-900 font-medium text-xs rounded-xl border border-gray-200 transition-colors flex items-center justify-center gap-2 cursor-pointer"
             >
               <Sparkles className="h-3.5 w-3.5 text-indigo-400" />
               Đăng nhập nhanh Admin (Seed)

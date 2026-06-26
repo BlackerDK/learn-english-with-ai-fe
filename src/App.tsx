@@ -17,6 +17,7 @@ import Quiz from './pages/Quiz';
 import AiTutor from './pages/AiTutor';
 import Settings from './pages/Settings';
 import Login from './pages/Login';
+import Landing from './pages/Landing';
 import ApiErrorPopup from './components/ApiErrorPopup';
 import { useApiError } from './hooks/useApiError';
 
@@ -26,6 +27,7 @@ export let globalShowApiError: ((err: import('./hooks/useApiError').ApiError) =>
 export default function App() {
   const [currentHash, setCurrentHash] = useState(window.location.hash || '#dashboard');
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const { apiError, showError, clearError } = useApiError();
   const [token, setToken] = useState<string | null>(() => localStorage.getItem('token'));
   const [user, setUser] = useState<{ displayName: string; username: string; role: string } | null>(() => {
@@ -46,6 +48,7 @@ export default function App() {
   const handleLoginSuccess = (newToken: string, newUser: any) => {
     setToken(newToken);
     setUser(newUser);
+    setShowLoginModal(false);
   };
 
   const handleLogout = () => {
@@ -89,32 +92,90 @@ export default function App() {
 
   if (!token) {
     return (
-      <div className="min-h-screen bg-bg-dark text-gray-100 flex items-center justify-center">
-        <Login onLoginSuccess={handleLoginSuccess} />
-      </div>
+      <>
+        <Landing onGoToLogin={() => setShowLoginModal(true)} />
+        {showLoginModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm">
+            <div className="relative w-full max-w-md animate-zoom-in">
+               <button 
+                 onClick={() => setShowLoginModal(false)}
+                 className="absolute -top-4 -right-4 bg-white text-gray-500 hover:text-rose-500 rounded-full p-2 shadow-lg z-10"
+               >
+                 <X className="h-5 w-5" />
+               </button>
+               <div className="bg-white rounded-3xl overflow-hidden shadow-2xl">
+                 <Login onLoginSuccess={handleLoginSuccess} />
+               </div>
+            </div>
+          </div>
+        )}
+      </>
     );
   }
 
   return (
-    <div className="min-h-screen bg-bg-dark flex text-gray-100">
-      {/* Sidebar Navigation */}
-      <aside className={`fixed inset-y-0 left-0 z-40 w-64 glass border-r border-white/5 transition-transform duration-300 md:translate-x-0 flex flex-col justify-between ${
-        isMobileOpen ? 'translate-x-0' : '-translate-x-full'
-      }`}>
-        <div className="flex-1 flex flex-col overflow-y-auto pt-5 pb-4">
-          {/* Logo brand */}
-          <div className="flex items-center gap-2 px-6 pb-6 border-b border-white/5">
-            <div className="p-2 bg-gradient-to-r from-indigo-500 to-violet-600 rounded-xl text-white">
-              <Sparkles className="h-5 w-5 animate-pulse" />
+    <div className="min-h-screen flex flex-col text-gray-900 overflow-hidden relative">
+      {/* Top Navigation */}
+      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-sm border-b-2 border-gray-200 px-4 py-3 md:px-8 flex items-center justify-between">
+        {/* Logo brand */}
+        <div className="flex items-center gap-3">
+          <div className="w-12 h-12 bg-gradient-to-br from-[#1e1b4b] to-[#312e81] rounded-[20px] text-white shadow-md flex items-center justify-center transform -rotate-6 hover:rotate-0 transition-transform cursor-pointer">
+            <span className="font-extrabold text-3xl font-serif leading-none mt-1">G</span>
+          </div>
+          <div className="hidden sm:block">
+            <span className="font-extrabold text-[22px] tracking-tight text-[#1e1b4b] block leading-none">Games</span>
+            <span className="text-[12px] text-gray-600 font-bold tracking-tight block mt-0.5">to learn English</span>
+          </div>
+        </div>
+
+        {/* Desktop Navigation Links */}
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+          {navItems.map((item) => {
+            const isActive = item.hash === currentHash;
+            return (
+              <a
+                key={item.name}
+                href={item.hash}
+                className={`px-3 py-2 text-[15px] font-bold rounded-2xl transition-all duration-300 hover:scale-105 ${
+                  isActive
+                    ? 'text-indigo-600 bg-indigo-50 shadow-sm border border-indigo-100'
+                    : 'text-gray-600 hover:text-indigo-500 hover:bg-gray-50'
+                }`}
+              >
+                {item.name}
+              </a>
+            );
+          })}
+        </nav>
+
+        <div className="flex items-center gap-4">
+          <div className="hidden sm:flex items-center gap-3">
+            <div className="h-10 w-10 rounded-[14px] bg-white border-2 border-gray-200 flex items-center justify-center font-extrabold text-sm text-[#1e1b4b] shadow-sm transform rotate-3">
+              {(user?.displayName || user?.username || 'US').slice(0, 2).toUpperCase()}
             </div>
-            <div>
-              <span className="font-extrabold text-sm tracking-tight text-white block">ANTIGRAVITY LANG</span>
-              <span className="text-[10px] text-gray-500 font-semibold uppercase tracking-wider block mt-0.5">AI Language Studio</span>
-            </div>
+            <button
+              onClick={handleLogout}
+              className="p-2 rounded-2xl text-gray-500 hover:text-rose-500 hover:bg-white/50 transition-colors cursor-pointer"
+              title="Đăng xuất"
+            >
+              <LogOut className="h-5 w-5" />
+            </button>
           </div>
 
-          {/* Navigation Links */}
-          <nav className="mt-6 flex-1 px-4 space-y-1">
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setIsMobileOpen(!isMobileOpen)}
+            className="lg:hidden p-2.5 rounded-2xl bg-gray-50 border border-gray-200 text-gray-700 shadow-sm hover:scale-105 transition-transform"
+          >
+            {isMobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile Navigation Dropdown */}
+      {isMobileOpen && (
+        <div className="lg:hidden absolute top-[72px] left-0 w-full z-30 bg-white border-b-2 border-gray-200 shadow-lg px-4 py-4 max-h-[calc(100vh-72px)] overflow-y-auto">
+          <div className="grid grid-cols-2 gap-2">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = item.hash === currentHash;
@@ -122,77 +183,36 @@ export default function App() {
                 <a
                   key={item.name}
                   href={item.hash}
-                  className={`group flex items-center px-4 py-3 text-xs font-semibold rounded-xl transition-all duration-200 ${
+                  onClick={() => setIsMobileOpen(false)}
+                  className={`flex items-center gap-2 px-4 py-3 text-sm font-bold rounded-2xl transition-all ${
                     isActive
-                      ? 'bg-gradient-to-r from-indigo-500/20 to-indigo-600/10 text-indigo-400 border border-indigo-500/20 shadow-lg shadow-indigo-500/5'
-                      : 'text-gray-400 hover:text-white hover:bg-white/5 border border-transparent'
+                      ? 'bg-indigo-50 text-indigo-600 shadow-sm border border-indigo-100'
+                      : 'text-gray-600 hover:bg-gray-50'
                   }`}
                 >
-                  <Icon className={`mr-3 h-4.5 w-4.5 transition-transform group-hover:scale-110 ${isActive ? 'text-indigo-400' : 'text-gray-500'}`} />
+                  <Icon className="h-4 w-4" />
                   {item.name}
                 </a>
               );
             })}
-          </nav>
-        </div>
-
-        {/* User Footer profile */}
-        <div className="p-4 border-t border-white/5 bg-white/2 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-full bg-gradient-to-br from-indigo-500 via-violet-500 to-cyan-500 flex items-center justify-center font-bold text-xs text-white select-none">
-              {(user?.displayName || user?.username || 'US').slice(0, 2).toUpperCase()}
-            </div>
-            <div className="text-left">
-              <span className="font-bold text-xs text-white block truncate max-w-[120px]" title={user?.displayName}>
-                {user?.displayName || 'Người dùng'}
-              </span>
-              <span className="text-[9px] text-gray-500 block truncate max-w-[120px]">
-                @{user?.username || 'user'}
-              </span>
-            </div>
           </div>
-          <button
-            onClick={handleLogout}
-            className="p-1.5 rounded-lg hover:bg-white/5 text-gray-400 hover:text-rose-400 transition-colors cursor-pointer"
-            title="Đăng xuất"
-          >
-            <LogOut className="h-4.5 w-4.5" />
-          </button>
+          <div className="mt-4 pt-4 border-t border-yellow-200/50 flex justify-between items-center">
+            <div className="flex items-center gap-2 font-bold text-gray-700">
+               Hi, {user?.displayName || user?.username || 'User'}
+            </div>
+            <button onClick={handleLogout} className="px-4 py-2 bg-rose-100 text-rose-500 font-bold rounded-xl flex items-center gap-2">
+              <LogOut className="h-4 w-4" /> Thoát
+            </button>
+          </div>
         </div>
-      </aside>
+      )}
 
       {/* Main Content Layout */}
-      <div className="flex-1 md:pl-64 flex flex-col min-w-0">
-        {/* Mobile Header Bar */}
-        <header className="sticky top-0 z-30 md:hidden flex items-center justify-between px-6 py-4 glass border-b border-white/5">
-          <div className="flex items-center gap-2">
-            <div className="p-1.5 bg-gradient-to-r from-indigo-500 to-violet-600 rounded-lg text-white">
-              <Sparkles className="h-4 w-4" />
-            </div>
-            <span className="font-extrabold text-xs tracking-tight text-white">ANTIGRAVITY LANG</span>
-          </div>
-
-          <button
-            onClick={() => setIsMobileOpen(!isMobileOpen)}
-            className="p-2 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 text-gray-400 hover:text-white cursor-pointer"
-          >
-            {isMobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </header>
-
-        {/* Content Workspace */}
-        <main className="flex-1 p-6 md:p-10 overflow-y-auto">
+      <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 z-10 relative">
+        <div className="main-board p-6 md:p-8 lg:p-10 mx-auto max-w-7xl relative">
           {activePage.component}
-        </main>
-      </div>
-
-      {/* Backdrop overlay for mobile sidebar */}
-      {isMobileOpen && (
-        <div
-          onClick={() => setIsMobileOpen(false)}
-          className="fixed inset-0 z-30 bg-black/60 backdrop-blur-sm md:hidden"
-        />
-      )}
+        </div>
+      </main>
 
       {/* Global API Error Popup */}
       <ApiErrorPopup

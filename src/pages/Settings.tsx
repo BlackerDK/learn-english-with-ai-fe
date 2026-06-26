@@ -159,7 +159,7 @@ export default function Settings() {
         <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
           Cài đặt hệ thống
         </h1>
-        <p className="text-gray-400 mt-1">Cấu hình API Key của Google Gemini và tùy chọn học tập của bạn.</p>
+        <p className="text-gray-600 mt-1">Cấu hình API Key của Google Gemini và tùy chọn học tập của bạn.</p>
       </div>
 
       {status.type && (
@@ -182,23 +182,23 @@ export default function Settings() {
             </div>
             <div>
               <h2 className="text-lg font-semibold">Google Gemini API</h2>
-              <p className="text-xs text-gray-400">Yêu cầu cho AI Tutor, Quiz, và đánh giá phát âm.</p>
+              <p className="text-xs text-gray-600">Yêu cầu cho AI Tutor, Quiz, và đánh giá phát âm.</p>
             </div>
           </div>
 
           <div className="text-sm">
             {hasKey ? (
-              <div className="p-3 bg-white/5 border border-white/5 rounded-xl flex items-center justify-between">
+              <div className="p-3 bg-white border border-gray-200 rounded-xl flex items-center justify-between">
                 <div>
-                  <span className="text-xs text-gray-400 block">Trạng thái</span>
+                  <span className="text-xs text-gray-600 block">Trạng thái</span>
                   <span className="text-emerald-400 font-semibold text-xs flex items-center gap-1.5 mt-0.5">
                     <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
                     Đã cấu hình
                   </span>
                 </div>
                 <div className="text-right">
-                  <span className="text-xs text-gray-400 block">API Key</span>
-                  <code className="text-xs text-gray-300 font-mono">{maskedKey}</code>
+                  <span className="text-xs text-gray-600 block">API Key</span>
+                  <code className="text-xs text-gray-700 font-mono">{maskedKey}</code>
                 </div>
               </div>
             ) : (
@@ -213,13 +213,13 @@ export default function Settings() {
 
           <form onSubmit={handleSaveKey} className="space-y-3 pt-2">
             <div>
-              <label className="text-xs text-gray-300 block mb-1 font-medium">Nhập API Key mới</label>
+              <label className="text-xs text-gray-700 block mb-1 font-medium">Nhập API Key mới</label>
               <input
                 type="password"
                 placeholder="Nhập Google Gemini API Key..."
                 value={apiKey}
                 onChange={(e) => setApiKey(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 transition-colors placeholder:text-gray-600"
+                className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 transition-colors placeholder:text-gray-600"
               />
             </div>
             <button
@@ -241,23 +241,23 @@ export default function Settings() {
             </div>
             <div>
               <h2 className="text-lg font-semibold">Groq API (AI Dự phòng)</h2>
-              <p className="text-xs text-gray-400">Dự phòng tự động khi Google Gemini hết dung lượng/quota.</p>
+              <p className="text-xs text-gray-600">Dự phòng tự động khi Google Gemini hết dung lượng/quota.</p>
             </div>
           </div>
 
           <div className="text-sm">
             {hasGroqKey ? (
-              <div className="p-3 bg-white/5 border border-white/5 rounded-xl flex items-center justify-between">
+              <div className="p-3 bg-white border border-gray-200 rounded-xl flex items-center justify-between">
                 <div>
-                  <span className="text-xs text-gray-400 block">Trạng thái</span>
+                  <span className="text-xs text-gray-600 block">Trạng thái</span>
                   <span className="text-emerald-400 font-semibold text-xs flex items-center gap-1.5 mt-0.5">
                     <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
                     Đã cấu hình
                   </span>
                 </div>
                 <div className="text-right">
-                  <span className="text-xs text-gray-400 block">API Key</span>
-                  <code className="text-xs text-gray-300 font-mono">{maskedGroqKey}</code>
+                  <span className="text-xs text-gray-600 block">API Key</span>
+                  <code className="text-xs text-gray-700 font-mono">{maskedGroqKey}</code>
                 </div>
               </div>
             ) : (
@@ -272,13 +272,13 @@ export default function Settings() {
 
           <form onSubmit={handleSaveGroqKey} className="space-y-3 pt-2">
             <div>
-              <label className="text-xs text-gray-300 block mb-1 font-medium">Nhập API Key Groq mới</label>
+              <label className="text-xs text-gray-700 block mb-1 font-medium">Nhập API Key Groq mới</label>
               <input
                 type="password"
                 placeholder="Nhập Groq API Key..."
                 value={groqKey}
                 onChange={(e) => setGroqKey(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-teal-500 transition-colors placeholder:text-gray-600"
+                className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-teal-500 transition-colors placeholder:text-gray-600"
               />
             </div>
             <button
@@ -300,41 +300,41 @@ export default function Settings() {
             </div>
             <div>
               <h2 className="text-lg font-semibold">Lộ trình học tập</h2>
-              <p className="text-xs text-gray-400">Chọn ngôn ngữ và cấp độ — Dashboard sẽ hiển thị đúng tiến trình.</p>
+              <p className="text-xs text-gray-600">Chọn ngôn ngữ và cấp độ — Dashboard sẽ hiển thị đúng tiến trình.</p>
             </div>
           </div>
 
           <div className="space-y-4 pt-2">
             <div>
-              <label className="text-xs text-gray-300 block mb-1 font-medium">Ngôn ngữ đích (Target Language)</label>
+              <label className="text-xs text-gray-700 block mb-1 font-medium">Ngôn ngữ đích (Target Language)</label>
               <select
                 value={language}
                 onChange={handleLanguageChange}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-cyan-500 transition-colors"
+                className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-cyan-500 transition-colors"
               >
-                <option value="en" className="bg-bg-dark text-white">Tiếng Anh (English)</option>
-                <option value="ja" className="bg-bg-dark text-white">Tiếng Nhật (Japanese)</option>
-                <option value="zh" className="bg-bg-dark text-white">Tiếng Trung (Chinese)</option>
+                <option value="en" className="bg-bg-dark text-gray-900">Tiếng Anh (English)</option>
+                <option value="ja" className="bg-bg-dark text-gray-900">Tiếng Nhật (Japanese)</option>
+                <option value="zh" className="bg-bg-dark text-gray-900">Tiếng Trung (Chinese)</option>
               </select>
             </div>
 
             <div>
-              <label className="text-xs text-gray-300 block mb-1 font-medium">Cấp độ lộ trình</label>
+              <label className="text-xs text-gray-700 block mb-1 font-medium">Cấp độ lộ trình</label>
               <select
                 value={studyLevel}
                 onChange={handleLevelChange}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-cyan-500 transition-colors"
+                className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-cyan-500 transition-colors"
               >
                 {LEVELS_BY_LANG[language].map((level) => (
-                  <option key={level} value={level} className="bg-bg-dark text-white">
+                  <option key={level} value={level} className="bg-bg-dark text-gray-900">
                     {level}
                   </option>
                 ))}
               </select>
             </div>
 
-            <div className="p-4 bg-white/5 border border-white/5 rounded-xl text-xs text-gray-400 leading-relaxed">
-              <span className="font-semibold text-white block mb-1">Lộ trình hiện tại:</span>
+            <div className="p-4 bg-white border border-gray-200 rounded-xl text-xs text-gray-600 leading-relaxed">
+              <span className="font-semibold text-gray-900 block mb-1">Lộ trình hiện tại:</span>
               {LANG_LABELS[language]} · {studyLevel}
             </div>
           </div>

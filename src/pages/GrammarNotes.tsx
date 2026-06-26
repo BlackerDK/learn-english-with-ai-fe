@@ -138,13 +138,13 @@ export default function GrammarNotes() {
   // Custom markdown components for rich rendering
   const markdownComponents = {
     h1: ({ children }: any) => (
-      <h1 className="flex items-center gap-2 text-xl font-extrabold text-white mt-6 mb-3 pb-2 border-b border-indigo-500/30">
+      <h1 className="flex items-center gap-2 text-xl font-extrabold text-gray-900 mt-6 mb-3 pb-2 border-b border-indigo-500/30">
         <span className="inline-flex items-center justify-center w-6 h-6 rounded-md bg-indigo-500/20 text-indigo-400 text-xs font-bold shrink-0">H1</span>
         {children}
       </h1>
     ),
     h2: ({ children }: any) => (
-      <h2 className="flex items-center gap-2 text-lg font-bold text-indigo-300 mt-5 mb-2.5 pb-1.5 border-b border-white/10">
+      <h2 className="flex items-center gap-2 text-lg font-bold text-indigo-300 mt-5 mb-2.5 pb-1.5 border-b border-gray-200">
         <span className="inline-flex items-center justify-center w-5 h-5 rounded bg-indigo-500/15 text-indigo-400 text-[10px] font-bold shrink-0">H2</span>
         {children}
       </h2>
@@ -162,10 +162,10 @@ export default function GrammarNotes() {
       </h4>
     ),
     p: ({ children }: any) => (
-      <p className="text-gray-300 text-sm leading-relaxed my-2">{children}</p>
+      <p className="text-gray-700 text-sm leading-relaxed my-2">{children}</p>
     ),
     strong: ({ children }: any) => (
-      <strong className="font-bold text-white">{children}</strong>
+      <strong className="font-bold text-gray-900">{children}</strong>
     ),
     em: ({ children }: any) => (
       <em className="italic text-cyan-200">{children}</em>
@@ -177,11 +177,11 @@ export default function GrammarNotes() {
         </code>
       ) : (
         <div className="relative my-3">
-          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border-b border-white/10 rounded-t-xl">
-            <Code className="h-3.5 w-3.5 text-gray-400" />
-            <span className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider">Code</span>
+          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border-b border-gray-200 rounded-t-xl">
+            <Code className="h-3.5 w-3.5 text-gray-600" />
+            <span className="text-[10px] text-gray-600 font-semibold uppercase tracking-wider">Code</span>
           </div>
-          <pre className="bg-[#0d1117] rounded-b-xl px-4 py-3 overflow-x-auto border border-white/10 border-t-0">
+          <pre className="bg-[#0d1117] rounded-b-xl px-4 py-3 overflow-x-auto border border-gray-200 border-t-0">
             <code className="text-emerald-300 text-xs font-mono leading-relaxed">{children}</code>
           </pre>
         </div>
@@ -199,13 +199,13 @@ export default function GrammarNotes() {
       <ol className="my-2 space-y-1 pl-1 list-decimal list-inside">{children}</ol>
     ),
     li: ({ children, ordered }: any) => (
-      <li className="flex items-start gap-2 text-sm text-gray-300 leading-relaxed">
+      <li className="flex items-start gap-2 text-sm text-gray-700 leading-relaxed">
         {!ordered && <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0" />}
         <span>{children}</span>
       </li>
     ),
     table: ({ children }: any) => (
-      <div className="my-4 overflow-x-auto rounded-xl border border-white/10">
+      <div className="my-4 overflow-x-auto rounded-xl border border-gray-200">
         <table className="w-full text-sm border-collapse">{children}</table>
       </div>
     ),
@@ -224,10 +224,10 @@ export default function GrammarNotes() {
       </th>
     ),
     td: ({ children }: any) => (
-      <td className="px-4 py-2.5 text-gray-300 text-xs leading-relaxed">{children}</td>
+      <td className="px-4 py-2.5 text-gray-700 text-xs leading-relaxed">{children}</td>
     ),
     hr: () => (
-      <hr className="my-4 border-white/10" />
+      <hr className="my-4 border-gray-200" />
     ),
     a: ({ children, href }: any) => (
       <a href={href} target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:text-indigo-300 underline underline-offset-2 transition-colors">
@@ -243,7 +243,7 @@ export default function GrammarNotes() {
           <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
             Ghi chú Ngữ pháp
           </h1>
-          <p className="text-gray-400 mt-1">Lưu trữ các cấu trúc ngữ pháp và tra cứu dạng bài viết Markdown.</p>
+          <p className="text-gray-600 mt-1">Lưu trữ các cấu trúc ngữ pháp và tra cứu dạng bài viết Markdown.</p>
         </div>
         {!isEditing && (
           <button
@@ -258,11 +258,11 @@ export default function GrammarNotes() {
 
       {isEditing ? (
         /* Markdown Editor and Live Preview Panel */
-        <div className="glass-card rounded-3xl overflow-hidden border border-white/10 flex flex-col h-[75vh]">
-          <div className="px-6 py-4 border-b border-white/5 flex flex-wrap items-center justify-between gap-4 bg-white/2">
+        <div className="glass-card rounded-3xl overflow-hidden border border-gray-200 flex flex-col h-[75vh]">
+          <div className="px-6 py-4 border-b border-gray-200 flex flex-wrap items-center justify-between gap-4 bg-white/2">
             <div className="flex items-center gap-3">
               <FileText className="h-5 w-5 text-indigo-400" />
-              <h2 className="text-base font-bold text-white">
+              <h2 className="text-base font-bold text-gray-900">
                 {editingId ? 'Chỉnh sửa bài học' : 'Soạn bài học mới'}
               </h2>
             </div>
@@ -270,7 +270,7 @@ export default function GrammarNotes() {
               <button
                 type="button"
                 onClick={() => setIsEditing(false)}
-                className="flex items-center gap-1.5 bg-white/5 hover:bg-white/10 text-white font-medium py-1.5 px-3 rounded-lg text-xs transition-colors cursor-pointer border border-white/5"
+                className="flex items-center gap-1.5 bg-white hover:bg-gray-50 text-gray-900 font-medium py-1.5 px-3 rounded-lg text-xs transition-colors cursor-pointer border border-gray-200"
               >
                 <X className="h-3.5 w-3.5" /> Hủy
               </button>
@@ -284,26 +284,26 @@ export default function GrammarNotes() {
             </div>
           </div>
 
-          <div className="p-6 space-y-4 border-b border-white/5 bg-white/1 flex flex-col md:flex-row gap-4">
+          <div className="p-6 space-y-4 border-b border-gray-200 bg-white/1 flex flex-col md:flex-row gap-4">
             <div className="flex-1">
-              <label className="text-xs text-gray-400 block mb-1 font-semibold">Tiêu đề bài học</label>
+              <label className="text-xs text-gray-600 block mb-1 font-semibold">Tiêu đề bài học</label>
               <input
                 type="text"
                 value={form.title}
                 onChange={(e) => setForm({ ...form, title: e.target.value })}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
                 placeholder="e.g. Thì Hiện tại đơn vs Hiện tại tiếp diễn"
               />
             </div>
             <div className="w-full md:w-1/4">
-              <label className="text-xs text-gray-400 block mb-1 font-semibold">Cấp độ (Level)</label>
+              <label className="text-xs text-gray-600 block mb-1 font-semibold">Cấp độ (Level)</label>
               <select
                 value={form.level}
                 onChange={(e) => setForm({ ...form, level: e.target.value })}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
               >
                 {levels.map((l) => (
-                  <option key={l} value={l} className="bg-bg-dark text-white">
+                  <option key={l} value={l} className="bg-bg-dark text-gray-900">
                     {l}
                   </option>
                 ))}
@@ -321,8 +321,8 @@ export default function GrammarNotes() {
           <div className="flex-1 grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-white/5 overflow-hidden">
             {/* Left side editor */}
             <div className="flex flex-col p-4 overflow-hidden h-full">
-              <div className="flex flex-col gap-2 pb-2 mb-2 border-b border-white/5">
-                <span className="text-xs text-gray-400 font-semibold uppercase tracking-wider">Soạn thảo Markdown</span>
+              <div className="flex flex-col gap-2 pb-2 mb-2 border-b border-gray-200">
+                <span className="text-xs text-gray-600 font-semibold uppercase tracking-wider">Soạn thảo Markdown</span>
                 <div className="flex items-center flex-wrap gap-1">
                   {[
                     { label: 'H2', title: 'Tiêu đề', insert: '## ' },
@@ -349,15 +349,15 @@ export default function GrammarNotes() {
               <textarea
                 value={form.content}
                 onChange={(e) => setForm({ ...form, content: e.target.value })}
-                className="w-full flex-1 bg-transparent border-0 resize-none focus:ring-0 focus:outline-none text-sm text-gray-200 font-mono leading-relaxed overflow-y-auto"
+                className="w-full flex-1 bg-transparent border-0 resize-none focus:ring-0 focus:outline-none text-sm text-gray-800 font-mono leading-relaxed overflow-y-auto"
                 placeholder="### 1. Cách dùng&#10;Viết bài ghi chú ngữ pháp tại đây bằng Markdown..."
               />
             </div>
 
             {/* Right side live preview */}
             <div className="flex flex-col p-4 overflow-hidden h-full bg-white/1">
-              <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/5">
-                <span className="text-xs text-gray-400 font-semibold uppercase tracking-wider flex items-center gap-1">
+              <div className="flex items-center justify-between pb-2 mb-2 border-b border-gray-200">
+                <span className="text-xs text-gray-600 font-semibold uppercase tracking-wider flex items-center gap-1">
                   <Eye className="h-3.5 w-3.5" /> Xem trước kết quả
                 </span>
               </div>
@@ -375,9 +375,9 @@ export default function GrammarNotes() {
         /* Regular List View & Detail split screen */
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-[70vh]">
           {/* Left Panel: Note List */}
-          <div className="glass-card rounded-2xl flex flex-col overflow-hidden border border-white/5 md:col-span-1">
+          <div className="glass-card rounded-2xl flex flex-col overflow-hidden border border-gray-200 md:col-span-1">
             {/* Search and Filters */}
-            <div className="p-4 border-b border-white/5 space-y-3">
+            <div className="p-4 border-b border-gray-200 space-y-3">
               <div className="relative">
                 <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-500" />
                 <input
@@ -385,14 +385,14 @@ export default function GrammarNotes() {
                   placeholder="Tìm ghi chú..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="w-full bg-white/5 border border-white/5 rounded-xl pl-9 pr-4 py-2 text-xs focus:outline-none focus:border-indigo-500/50 transition-colors"
+                  className="w-full bg-white border border-gray-200 rounded-xl pl-9 pr-4 py-2 text-xs focus:outline-none focus:border-indigo-500/50 transition-colors"
                 />
               </div>
 
               <select
                 value={selectedLevel}
                 onChange={(e) => setSelectedLevel(e.target.value)}
-                className="w-full bg-white/5 border border-white/5 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-indigo-500/50 text-gray-300"
+                className="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-indigo-500/50 text-gray-700"
               >
                 <option value="" className="bg-bg-dark">Tất cả trình độ</option>
                 {levels.map((l) => (
@@ -421,10 +421,10 @@ export default function GrammarNotes() {
                     }`}
                   >
                     <div className="space-y-1">
-                      <h3 className={`font-bold text-sm leading-snug ${selectedNote?.id === note.id ? 'text-white' : 'text-gray-300'}`}>
+                      <h3 className={`font-bold text-sm leading-snug ${selectedNote?.id === note.id ? 'text-gray-900' : 'text-gray-700'}`}>
                         {note.title}
                       </h3>
-                      <span className="inline-block px-1.5 py-0.5 rounded bg-white/5 border border-white/5 text-[9px] font-semibold text-indigo-400">
+                      <span className="inline-block px-1.5 py-0.5 rounded bg-white border border-gray-200 text-[9px] font-semibold text-indigo-400">
                         {note.level}
                       </span>
                     </div>
@@ -436,14 +436,14 @@ export default function GrammarNotes() {
           </div>
 
           {/* Right Panel: Note Detail View */}
-          <div className="glass-card rounded-2xl flex flex-col overflow-hidden border border-white/5 md:col-span-2">
+          <div className="glass-card rounded-2xl flex flex-col overflow-hidden border border-gray-200 md:col-span-2">
             {selectedNote ? (
               <div className="flex flex-col h-full overflow-hidden">
                 {/* Header details */}
-                <div className="px-6 py-4 border-b border-white/5 flex items-center justify-between bg-white/2">
+                <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between bg-white/2">
                   <div className="space-y-1">
-                    <h2 className="text-lg font-bold text-white">{selectedNote.title}</h2>
-                    <div className="flex items-center gap-3 text-xs text-gray-400">
+                    <h2 className="text-lg font-bold text-gray-900">{selectedNote.title}</h2>
+                    <div className="flex items-center gap-3 text-xs text-gray-600">
                       <span className="font-semibold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 border border-indigo-500/20 rounded-full">
                         {selectedNote.level}
                       </span>
@@ -454,7 +454,7 @@ export default function GrammarNotes() {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => handleStartEdit(selectedNote)}
-                      className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white transition-colors cursor-pointer border border-white/5"
+                      className="p-2 rounded-xl bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors cursor-pointer border border-gray-200"
                       title="Sửa ghi chú"
                     >
                       <Edit className="h-4 w-4" />
@@ -493,21 +493,21 @@ export default function GrammarNotes() {
       {/* Custom Delete Confirmation Modal */}
       {isDeleteConfirmOpen && deleteId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="glass-card w-full max-w-sm rounded-2xl border border-white/10 shadow-2xl p-6 space-y-4 animate-zoom-in text-center">
+          <div className="glass-card w-full max-w-sm rounded-2xl border border-gray-200 shadow-2xl p-6 space-y-4 animate-zoom-in text-center">
             <div className="mx-auto w-12 h-12 rounded-full bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400">
               <Trash2 className="h-6 w-6" />
             </div>
             <div className="space-y-2">
-              <h3 className="text-lg font-bold text-white font-sans">Xóa ghi chú?</h3>
-              <p className="text-xs text-gray-400 leading-relaxed font-sans">
-                Bạn có chắc chắn muốn xóa bài ghi chú ngữ pháp <span className="font-semibold text-white">"{deleteTitle}"</span> không? Hành động này không thể hoàn tác.
+              <h3 className="text-lg font-bold text-gray-900 font-sans">Xóa ghi chú?</h3>
+              <p className="text-xs text-gray-600 leading-relaxed font-sans">
+                Bạn có chắc chắn muốn xóa bài ghi chú ngữ pháp <span className="font-semibold text-gray-900">"{deleteTitle}"</span> không? Hành động này không thể hoàn tác.
               </p>
             </div>
             <div className="flex gap-3 pt-2">
               <button
                 type="button"
                 onClick={() => setIsDeleteConfirmOpen(false)}
-                className="flex-1 bg-white/5 hover:bg-white/10 text-white font-medium py-2 px-4 rounded-xl text-sm transition-colors border border-white/5 cursor-pointer font-sans"
+                className="flex-1 bg-white hover:bg-gray-50 text-gray-900 font-medium py-2 px-4 rounded-xl text-sm transition-colors border border-gray-200 cursor-pointer font-sans"
               >
                 Hủy
               </button>
