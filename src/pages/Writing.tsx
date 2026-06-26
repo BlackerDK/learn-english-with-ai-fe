@@ -484,7 +484,7 @@ export default function Writing() {
                 <select
                   value={form.level}
                   onChange={e => setForm({ ...form, level: e.target.value })}
-                  className="w-full bg-[#1a1a24] border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500/50 text-gray-900"
+                  className="w-full bg-indigo-50 border-2 border-indigo-200 rounded-xl px-4 py-3 text-sm font-bold focus:outline-none focus:border-indigo-500/50 focus:ring-4 focus:ring-indigo-500/20 text-indigo-700 cursor-pointer shadow-sm hover:bg-indigo-100 transition-colors"
                 >
                   <option value="Beginner">Beginner (A1-A2)</option>
                   <option value="Intermediate">Intermediate (B1-B2)</option>

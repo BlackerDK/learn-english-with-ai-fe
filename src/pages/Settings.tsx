@@ -36,7 +36,9 @@ export default function Settings() {
 
   const fetchKeyStatus = async () => {
     try {
-      const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/settings/gemini-key');
+      const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/settings/gemini-key', {
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+      });
       if (res.ok) {
         const data = await res.json();
         setHasKey(data.exists);
@@ -49,7 +51,9 @@ export default function Settings() {
 
   const fetchGroqKeyStatus = async () => {
     try {
-      const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/settings/groq-key');
+      const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/settings/groq-key', {
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+      });
       if (res.ok) {
         const data = await res.json();
         setHasGroqKey(data.exists);
@@ -72,7 +76,10 @@ export default function Settings() {
     try {
       const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/settings/gemini-key', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
         body: JSON.stringify({ key: apiKey.trim() }),
       });
 
@@ -103,7 +110,10 @@ export default function Settings() {
     try {
       const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/settings/groq-key', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
         body: JSON.stringify({ key: groqKey.trim() }),
       });
 
