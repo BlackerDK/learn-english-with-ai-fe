@@ -449,9 +449,10 @@ export default function Vocabulary() {
             className="bg-white border border-gray-200 rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-indigo-500/50 text-gray-700"
           >
             <option value="" className="bg-bg-dark">Tất cả trạng thái</option>
-            <option value="New" className="bg-bg-dark">Mới (New)</option>
-            <option value="Learning" className="bg-bg-dark">Đang học (Learning)</option>
-            <option value="Mastered" className="bg-bg-dark">Đã thuộc (Mastered)</option>
+            <option value="unknown" className="bg-bg-dark">Chưa biết (Unknown)</option>
+            <option value="hard" className="bg-bg-dark">Khó (Hard)</option>
+            <option value="good" className="bg-bg-dark">Nhớ (Good)</option>
+            <option value="easy" className="bg-bg-dark">Đã thuộc (Easy)</option>
           </select>
 
           <select
@@ -525,13 +526,15 @@ export default function Vocabulary() {
                     )}
                   </div>
                   <span className={`px-2 py-0.5 rounded-full text-[10px] font-semibold border ${
-                    item.status === 'Mastered' 
+                    item.status === 'easy' 
                       ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' 
-                      : item.status === 'Learning' 
-                      ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400' 
-                      : 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400'
+                      : item.status === 'good' 
+                      ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400'
+                      : item.status === 'hard'
+                      ? 'bg-amber-500/10 border-amber-500/20 text-amber-400'
+                      : 'bg-gray-500/10 border-gray-500/20 text-gray-400'
                   }`}>
-                    {item.status}
+                    {item.status === 'easy' ? 'Đã thuộc (Easy)' : item.status === 'good' ? 'Nhớ (Good)' : item.status === 'hard' ? 'Khó (Hard)' : 'Chưa biết (Unknown)'}
                   </span>
                 </div>
 

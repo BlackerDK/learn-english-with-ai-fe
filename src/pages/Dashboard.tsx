@@ -118,32 +118,32 @@ export default function Dashboard() {
 
       {/* Progress Stats row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-[#FFD93D] border-4 border-[#d49a00] rounded-3xl p-4 flex items-center gap-4 transform hover:scale-105 transition-transform cursor-pointer shadow-[0_6px_0_#d49a00]">
-          <div className="p-3 bg-white/40 rounded-2xl text-[#c47b00]"><Zap size={28} fill="currentColor"/></div>
+        <div className="bg-gray-100 border-4 border-gray-200 rounded-3xl p-4 flex items-center gap-4 transform hover:scale-105 transition-transform cursor-pointer shadow-[0_6px_0_#e5e7eb]">
+          <div className="p-3 bg-white/40 rounded-2xl text-gray-500"><HelpCircle size={28} fill="currentColor"/></div>
           <div>
-            <div className="text-[#c47b00] font-bold text-sm">XP Points</div>
-            <div className="text-2xl font-extrabold text-[#965e00]">{xp}</div>
-          </div>
-        </div>
-        <div className="bg-[#7EE787] border-4 border-[#52c45d] rounded-3xl p-4 flex items-center gap-4 transform hover:scale-105 transition-transform cursor-pointer shadow-[0_6px_0_#52c45d]">
-          <div className="p-3 bg-white/40 rounded-2xl text-[#2d8a36]"><Target size={28} fill="currentColor"/></div>
-          <div>
-            <div className="text-[#2d8a36] font-bold text-sm">Coins</div>
-            <div className="text-2xl font-extrabold text-[#1a5c21]">{coins}</div>
+            <div className="text-gray-500 font-bold text-sm">Chưa biết</div>
+            <div className="text-2xl font-extrabold text-gray-700">{stats.unknown}</div>
           </div>
         </div>
         <div className="bg-[#FF8A65] border-4 border-[#d8633d] rounded-3xl p-4 flex items-center gap-4 transform hover:scale-105 transition-transform cursor-pointer shadow-[0_6px_0_#d8633d]">
-          <div className="p-3 bg-white/40 rounded-2xl text-[#a84423]"><Calendar size={28} fill="currentColor"/></div>
+          <div className="p-3 bg-white/40 rounded-2xl text-[#a84423]"><Target size={28} fill="currentColor"/></div>
           <div>
-            <div className="text-[#a84423] font-bold text-sm">Day Streak</div>
-            <div className="text-2xl font-extrabold text-[#7a2e15]">{streak}</div>
+            <div className="text-[#a84423] font-bold text-sm">Khó</div>
+            <div className="text-2xl font-extrabold text-[#7a2e15]">{stats.hard}</div>
           </div>
         </div>
-        <div className="bg-[#C8B6FF] border-4 border-[#9a86d8] rounded-3xl p-4 flex items-center gap-4 transform hover:scale-105 transition-transform cursor-pointer shadow-[0_6px_0_#9a86d8]">
-          <div className="p-3 bg-white/40 rounded-2xl text-[#6b56a8]"><Star size={28} fill="currentColor"/></div>
+        <div className="bg-[#6EC6FF] border-4 border-[#4BA3E3] rounded-3xl p-4 flex items-center gap-4 transform hover:scale-105 transition-transform cursor-pointer shadow-[0_6px_0_#4BA3E3]">
+          <div className="p-3 bg-white/40 rounded-2xl text-[#2a7eb8]"><Star size={28} fill="currentColor"/></div>
           <div>
-            <div className="text-[#6b56a8] font-bold text-sm">Stars</div>
-            <div className="text-2xl font-extrabold text-[#4c3a7a]">{stars}</div>
+            <div className="text-[#2a7eb8] font-bold text-sm">Nhớ sơ sơ</div>
+            <div className="text-2xl font-extrabold text-[#1c5d8a]">{stats.good}</div>
+          </div>
+        </div>
+        <div className="bg-[#7EE787] border-4 border-[#52c45d] rounded-3xl p-4 flex items-center gap-4 transform hover:scale-105 transition-transform cursor-pointer shadow-[0_6px_0_#52c45d]">
+          <div className="p-3 bg-white/40 rounded-2xl text-[#2d8a36]"><Trophy size={28} fill="currentColor"/></div>
+          <div>
+            <div className="text-[#2d8a36] font-bold text-sm">Đã thuộc</div>
+            <div className="text-2xl font-extrabold text-[#1a5c21]">{stats.easy}</div>
           </div>
         </div>
       </div>
@@ -153,8 +153,8 @@ export default function Dashboard() {
         {/* Circular Progress */}
         <div className="bg-white border-4 border-gray-100 p-6 rounded-[32px] md:col-span-1 flex flex-col items-center justify-center space-y-6 shadow-sm">
           <div className="text-center">
-            <h3 className="font-extrabold text-xl text-gray-800">Your Progress</h3>
-            <p className="text-sm font-bold text-gray-400 mt-1">Keep it up!</p>
+            <h3 className="font-extrabold text-xl text-gray-800">Tiến độ của bạn</h3>
+            <p className="text-sm font-bold text-gray-400 mt-1">Tiếp tục phát huy nhé!</p>
           </div>
           
           <div className="relative h-48 w-48 flex items-center justify-center">
@@ -174,12 +174,12 @@ export default function Dashboard() {
             </svg>
             <div className="text-center">
               <span className="text-4xl font-extrabold text-gray-800">{masteredPercentage}%</span>
-              <span className="text-sm font-bold text-gray-400 block mt-1">Mastered</span>
+              <span className="text-sm font-bold text-gray-400 block mt-1">Đã thuộc</span>
             </div>
           </div>
 
           <div className="w-full bg-[#F7F9FC] p-4 rounded-2xl border-2 border-gray-100 flex justify-between items-center">
-            <span className="font-bold text-gray-500">Words Learned</span>
+            <span className="font-bold text-gray-500">Từ đã học</span>
             <span className="font-extrabold text-[#6EC6FF] text-xl">{stats.easy} / {stats.totalWords || 50}</span>
           </div>
         </div>
@@ -187,41 +187,49 @@ export default function Dashboard() {
         {/* Feature Games */}
         <div className="bg-white border-4 border-gray-100 p-6 rounded-[32px] md:col-span-2 space-y-6 shadow-sm">
           <div className="flex items-center justify-between">
-            <h3 className="font-extrabold text-xl text-gray-800">Mini Games</h3>
-            <span className="px-3 py-1 bg-gray-100 text-gray-500 font-bold text-xs rounded-full">Unlock more!</span>
+            <h3 className="font-extrabold text-xl text-gray-800">Kỹ năng & Bài tập</h3>
+            <span className="px-3 py-1 bg-indigo-50 text-indigo-500 font-bold text-xs rounded-full">Khám phá ngay!</span>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             
-            <a href="#speaking-practice" onClick={() => { window.location.hash = 'speaking-practice'; }} className="group p-4 rounded-3xl bg-indigo-50 border-4 border-indigo-100 hover:border-[#C8B6FF] hover:bg-white transition-colors flex items-center gap-4">
-              <div className="w-16 h-16 rounded-2xl bg-[#C8B6FF] flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform"><Mic size={32} fill="white"/></div>
-              <div>
-                <h4 className="font-extrabold text-gray-800">Speak & Spell</h4>
-                <p className="text-sm font-bold text-gray-500">Earn 50 XP</p>
-              </div>
-            </a>
-            
-            <a href="#flashcards" onClick={() => { window.location.hash = 'flashcards'; }} className="group p-4 rounded-3xl bg-orange-50 border-4 border-orange-100 hover:border-[#FF8A65] hover:bg-white transition-colors flex items-center gap-4">
-              <div className="w-16 h-16 rounded-2xl bg-[#FF8A65] flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform"><BookMarked size={32} fill="white"/></div>
-              <div>
-                <h4 className="font-extrabold text-gray-800">Memory Match</h4>
-                <p className="text-sm font-bold text-gray-500">Earn 40 XP</p>
-              </div>
-            </a>
-            
             <a href="#listening" onClick={() => { window.location.hash = 'listening'; }} className="group p-4 rounded-3xl bg-yellow-50 border-4 border-yellow-100 hover:border-[#FFD93D] hover:bg-white transition-colors flex items-center gap-4">
               <div className="w-16 h-16 rounded-2xl bg-[#FFD93D] flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform"><Volume2 size={32} fill="white"/></div>
               <div>
-                <h4 className="font-extrabold text-gray-800">Listen & Guess</h4>
-                <p className="text-sm font-bold text-gray-500">Earn 30 XP</p>
+                <h4 className="font-extrabold text-gray-800">Luyện Nghe</h4>
+                <p className="text-sm font-bold text-gray-500">{stats.listeningCount > 0 ? `${stats.listeningCount} bài học` : 'Cải thiện kỹ năng nghe'}</p>
+              </div>
+            </a>
+
+            <a href="#speaking-practice" onClick={() => { window.location.hash = 'speaking-practice'; }} className="group p-4 rounded-3xl bg-indigo-50 border-4 border-indigo-100 hover:border-[#C8B6FF] hover:bg-white transition-colors flex items-center gap-4">
+              <div className="w-16 h-16 rounded-2xl bg-[#C8B6FF] flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform"><Mic size={32} fill="white"/></div>
+              <div>
+                <h4 className="font-extrabold text-gray-800">Luyện Nói</h4>
+                <p className="text-sm font-bold text-gray-500">Phát âm chuẩn xác</p>
               </div>
             </a>
             
             <a href="#quiz" onClick={() => { window.location.hash = 'quiz'; }} className="group p-4 rounded-3xl bg-green-50 border-4 border-green-100 hover:border-[#7EE787] hover:bg-white transition-colors flex items-center gap-4">
               <div className="w-16 h-16 rounded-2xl bg-[#7EE787] flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform"><HelpCircle size={32} fill="white"/></div>
               <div>
-                <h4 className="font-extrabold text-gray-800">Quiz Challenge</h4>
-                <p className="text-sm font-bold text-gray-500">Earn 100 XP</p>
+                <h4 className="font-extrabold text-gray-800">Trắc nghiệm (Quiz)</h4>
+                <p className="text-sm font-bold text-gray-500">{stats.quizCount > 0 ? `Đã chơi ${stats.quizCount} lần` : 'Kiểm tra kiến thức'}</p>
+              </div>
+            </a>
+
+            <a href="#writing" onClick={() => { window.location.hash = 'writing'; }} className="group p-4 rounded-3xl bg-orange-50 border-4 border-orange-100 hover:border-[#FF8A65] hover:bg-white transition-colors flex items-center gap-4">
+              <div className="w-16 h-16 rounded-2xl bg-[#FF8A65] flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform"><Edit3 size={32} fill="white"/></div>
+              <div>
+                <h4 className="font-extrabold text-gray-800">Luyện Viết</h4>
+                <p className="text-sm font-bold text-gray-500">Nâng cao vốn từ</p>
+              </div>
+            </a>
+
+            <a href="#grammar" onClick={() => { window.location.hash = 'grammar'; }} className="group p-4 rounded-3xl bg-blue-50 border-4 border-blue-100 hover:border-[#6EC6FF] hover:bg-white transition-colors flex items-center gap-4 sm:col-span-2">
+              <div className="w-16 h-16 rounded-2xl bg-[#6EC6FF] flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform"><BookMarked size={32} fill="white"/></div>
+              <div>
+                <h4 className="font-extrabold text-gray-800">Ghi chú & Ngữ pháp</h4>
+                <p className="text-sm font-bold text-gray-500">{stats.grammarCount > 0 ? `${stats.grammarCount} ghi chú` : 'Học cấu trúc câu'}</p>
               </div>
             </a>
 
