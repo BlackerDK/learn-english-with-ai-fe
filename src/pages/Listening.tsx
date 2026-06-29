@@ -86,7 +86,11 @@ export default function Listening() {
       let url = `/api/listening?search=${encodeURIComponent(search)}`;
       if (selectedLevel) url += `&level=${encodeURIComponent(selectedLevel)}`;
 
-      const res = await fetch(url);
+      const res = await fetch((import.meta.env.VITE_API_URL || '') + url, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
       if (res.ok) {
         const data = await res.json();
         setLessons(data);
@@ -337,7 +341,12 @@ export default function Listening() {
 
   const handleDeleteLesson = async (id: string) => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/listening/${id}`, { method: 'DELETE' });
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/listening/${id}`, { 
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
       if (res.ok) {
         // Sau khi xóa, tìm bài nghe khác để select
         const remainingLessons = lessons.filter(l => l.id !== id);
@@ -370,9 +379,12 @@ export default function Listening() {
       const method = editingId ? 'PUT' : 'POST';
       const body = editingId ? { id: editingId, ...form } : form;
 
-      const res = await fetch(url, {
+      const res = await fetch((import.meta.env.VITE_API_URL || '') + url, {
         method,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
         body: JSON.stringify(body),
       });
 
@@ -400,7 +412,13 @@ export default function Listening() {
     try {
       const formData = new FormData();
       formData.append('file', importFile);
-      const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/listening/import-excel', { method: 'POST', body: formData });
+      const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/listening/import-excel', { 
+        method: 'POST', 
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: formData 
+      });
       if (res.ok) {
         const data = await res.json();
         setImportResult({ count: data.length });

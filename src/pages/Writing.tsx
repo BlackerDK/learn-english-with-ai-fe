@@ -104,7 +104,7 @@ export default function Writing() {
         delete payload.id;
       }
 
-      const res = await fetch(url, {
+      const res = await fetch((import.meta.env.VITE_API_URL || '') + url, {
         method,
         headers: {
           'Content-Type': 'application/json',

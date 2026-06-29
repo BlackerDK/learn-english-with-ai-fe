@@ -46,7 +46,11 @@ export default function GrammarNotes() {
       let url = `/api/grammar?search=${encodeURIComponent(search)}`;
       if (selectedLevel) url += `&level=${encodeURIComponent(selectedLevel)}`;
 
-      const res = await fetch(url);
+      const res = await fetch((import.meta.env.VITE_API_URL || '') + url, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
       if (res.ok) {
         const data = await res.json();
         setNotes(data);
@@ -85,7 +89,12 @@ export default function GrammarNotes() {
 
   const handleDelete = async (id: string) => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/grammar/${id}`, { method: 'DELETE' });
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/grammar/${id}`, { 
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
       if (res.ok) {
         setIsEditing(false);
         setSelectedNote(null);
@@ -109,9 +118,12 @@ export default function GrammarNotes() {
       const method = editingId ? 'PUT' : 'POST';
       const bodyData = editingId ? { id: editingId, ...form } : form;
 
-      const res = await fetch(url, {
+      const res = await fetch((import.meta.env.VITE_API_URL || '') + url, {
         method,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
         body: JSON.stringify(bodyData),
       });
 
